@@ -1,0 +1,225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7979770056305568454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7979770056305568453}
+  m_Layer: 0
+  m_Name: HermesDerToteBote
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7979770056305568453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7979770056305568454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7581651554411922161}
+  - {fileID: 7581651553393705561}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7979770055061644570
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7979770056305568453}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.504393
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.504392
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5.504393
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.885
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.6513
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.955
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99987334
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.015915412
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 1.824
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_Name
+      value: "Hermes Schuhe.fbx \xFCberarb"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7765336027939312233, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 44dc6b1483d97744d8518b466e9e270e, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab418ca3a0f97204ba364eff7fe22913, type: 3}
+--- !u!4 &7581651554411922161 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+    type: 3}
+  m_PrefabInstance: {fileID: 7979770055061644570}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7979770056054629810
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7979770056305568453}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.504393
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.504392
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5.504393
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.1224
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.6513
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.978
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9998871
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.015026604
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -1.722
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_Name
+      value: "Hermes Schuhe.fbx \xFCberarb (1)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7765336027939312233, guid: ab418ca3a0f97204ba364eff7fe22913,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 44dc6b1483d97744d8518b466e9e270e, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab418ca3a0f97204ba364eff7fe22913, type: 3}
+--- !u!4 &7581651553393705561 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ab418ca3a0f97204ba364eff7fe22913,
+    type: 3}
+  m_PrefabInstance: {fileID: 7979770056054629810}
+  m_PrefabAsset: {fileID: 0}

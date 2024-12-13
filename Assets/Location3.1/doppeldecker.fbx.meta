@@ -1,0 +1,851 @@
+fileFormatVersion: 2
+guid: 0d386dbb74c6d214e8a44a1a124f22fe
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      74: 1079111163806125551
+    second: "Halterung|Back Fl\xFCgelAction"
+  - first:
+      74: -4128149211705789387
+    second: Halterung|Body .001Action
+  - first:
+      74: -1203338774740472270
+    second: Halterung|Body .002Action
+  - first:
+      74: 8673884367872339308
+    second: Halterung|Body StreifenAction
+  - first:
+      74: 2537133119711601776
+    second: Halterung|Body TopAction
+  - first:
+      74: -13072259827084071
+    second: "Halterung|Fl\xFCgel StreifenAction"
+  - first:
+      74: -7239231434016956923
+    second: "Halterung|Fl\xFCgelAction"
+  - first:
+      74: -2956484411701006507
+    second: Halterung|Halterung BreaksAction
+  - first:
+      74: -5161086690335893765
+    second: Halterung|Halterung Reifen Action
+  - first:
+      74: 4485408349024900275
+    second: Halterung|HalterungAction
+  - first:
+      74: 1229626415802427252
+    second: "Halterung|Propeller Bl\xE4tterAction"
+  - first:
+      74: -2868530010201260320
+    second: Halterung|PropellerAction
+  - first:
+      74: 6497715128408396015
+    second: Halterung|Reifen KernAction
+  - first:
+      74: 8997008707088540884
+    second: Halterung|ReifenAction
+  - first:
+      74: -4188065450138344516
+    second: Halterung|StangeAction
+  - first:
+      74: 5607352521706080541
+    second: "Fl\xFCgel|Back Fl\xFCgelAction"
+  - first:
+      74: -3136269783089121564
+    second: "Fl\xFCgel|Body .001Action"
+  - first:
+      74: 7713444198755221052
+    second: "Fl\xFCgel|Body .002Action"
+  - first:
+      74: -2157307236369445732
+    second: "Fl\xFCgel|Body StreifenAction"
+  - first:
+      74: 5196896478154090893
+    second: "Fl\xFCgel|Body TopAction"
+  - first:
+      74: -282713732984673166
+    second: "Fl\xFCgel|Fl\xFCgel StreifenAction"
+  - first:
+      74: 3553435514246218521
+    second: "Fl\xFCgel|Fl\xFCgelAction"
+  - first:
+      74: 1472019987887150534
+    second: "Fl\xFCgel|Halterung BreaksAction"
+  - first:
+      74: -5819911617199075135
+    second: "Fl\xFCgel|Halterung Reifen Action"
+  - first:
+      74: -5939844449940571273
+    second: "Fl\xFCgel|HalterungAction"
+  - first:
+      74: -8289080443057491244
+    second: "Fl\xFCgel|Propeller Bl\xE4tterAction"
+  - first:
+      74: -4522513588077129565
+    second: "Fl\xFCgel|PropellerAction"
+  - first:
+      74: 8201625077317150226
+    second: "Fl\xFCgel|Reifen KernAction"
+  - first:
+      74: 8950398988176939820
+    second: "Fl\xFCgel|ReifenAction"
+  - first:
+      74: 3542769148167389298
+    second: "Fl\xFCgel|StangeAction"
+  - first:
+      74: -7396815045642816777
+    second: "Reifen|Back Fl\xFCgelAction"
+  - first:
+      74: 3715045914478189340
+    second: Reifen|Body .001Action
+  - first:
+      74: -3659326704808697750
+    second: Reifen|Body .002Action
+  - first:
+      74: 2882571276192900040
+    second: Reifen|Body StreifenAction
+  - first:
+      74: 1996690418744319159
+    second: Reifen|Body TopAction
+  - first:
+      74: 4885565507728906680
+    second: "Reifen|Fl\xFCgel StreifenAction"
+  - first:
+      74: -5904454249805393353
+    second: "Reifen|Fl\xFCgelAction"
+  - first:
+      74: 2369297140963852508
+    second: Reifen|Halterung BreaksAction
+  - first:
+      74: -437209384202715804
+    second: Reifen|Halterung Reifen Action
+  - first:
+      74: -2291098975592916295
+    second: Reifen|HalterungAction
+  - first:
+      74: -2130275491867507543
+    second: "Reifen|Propeller Bl\xE4tterAction"
+  - first:
+      74: 6213976860792742156
+    second: Reifen|PropellerAction
+  - first:
+      74: 6693776624468964145
+    second: Reifen|Reifen KernAction
+  - first:
+      74: -393055163426267342
+    second: Reifen|ReifenAction
+  - first:
+      74: -9070959372996571697
+    second: Reifen|StangeAction
+  - first:
+      74: 428592581118566878
+    second: "Halterung Reifen |Back Fl\xFCgelAction"
+  - first:
+      74: 5399350337429335366
+    second: Halterung Reifen |Body .001Action
+  - first:
+      74: -3610048405690651659
+    second: Halterung Reifen |Body .002Action
+  - first:
+      74: -4493950407131122269
+    second: Halterung Reifen |Body StreifenAction
+  - first:
+      74: 577171608056424444
+    second: Halterung Reifen |Body TopAction
+  - first:
+      74: -7906665613229162080
+    second: "Halterung Reifen |Fl\xFCgel StreifenAction"
+  - first:
+      74: -6433412283877828248
+    second: "Halterung Reifen |Fl\xFCgelAction"
+  - first:
+      74: 1694629109544937123
+    second: Halterung Reifen |Halterung BreaksAction
+  - first:
+      74: 3045915275185001623
+    second: Halterung Reifen |Halterung Reifen Action
+  - first:
+      74: 5001116518952966635
+    second: Halterung Reifen |HalterungAction
+  - first:
+      74: -5865431767699540555
+    second: "Halterung Reifen |Propeller Bl\xE4tterAction"
+  - first:
+      74: 210133237609296226
+    second: Halterung Reifen |PropellerAction
+  - first:
+      74: 4179352552141581334
+    second: Halterung Reifen |Reifen KernAction
+  - first:
+      74: -4599606103882189962
+    second: Halterung Reifen |ReifenAction
+  - first:
+      74: -2215637497123146016
+    second: Halterung Reifen |StangeAction
+  - first:
+      74: -1143678749773447260
+    second: "Propeller Bl\xE4tter|Back Fl\xFCgelAction"
+  - first:
+      74: 8109469648970332328
+    second: "Propeller Bl\xE4tter|Body .001Action"
+  - first:
+      74: 5300170662570191358
+    second: "Propeller Bl\xE4tter|Body .002Action"
+  - first:
+      74: 2690094219780938283
+    second: "Propeller Bl\xE4tter|Body StreifenAction"
+  - first:
+      74: -706006405658987435
+    second: "Propeller Bl\xE4tter|Body TopAction"
+  - first:
+      74: 5953610594862652554
+    second: "Propeller Bl\xE4tter|Fl\xFCgel StreifenAction"
+  - first:
+      74: -8121613806973837328
+    second: "Propeller Bl\xE4tter|Fl\xFCgelAction"
+  - first:
+      74: -7872228515689234018
+    second: "Propeller Bl\xE4tter|Halterung BreaksAction"
+  - first:
+      74: -2510204323057227628
+    second: "Propeller Bl\xE4tter|Halterung Reifen Action"
+  - first:
+      74: 1808553525777882129
+    second: "Propeller Bl\xE4tter|HalterungAction"
+  - first:
+      74: 301428788278543469
+    second: "Propeller Bl\xE4tter|Propeller Bl\xE4tterAction"
+  - first:
+      74: 7209247163845741887
+    second: "Propeller Bl\xE4tter|PropellerAction"
+  - first:
+      74: 3877431530271284526
+    second: "Propeller Bl\xE4tter|Reifen KernAction"
+  - first:
+      74: 805854224354923559
+    second: "Propeller Bl\xE4tter|ReifenAction"
+  - first:
+      74: -2966406971477245767
+    second: "Propeller Bl\xE4tter|StangeAction"
+  - first:
+      74: 7282249501277557881
+    second: "Back Fl\xFCgel|Back Fl\xFCgelAction"
+  - first:
+      74: 6325456927085349348
+    second: "Back Fl\xFCgel|Body .001Action"
+  - first:
+      74: -7363028206797701791
+    second: "Back Fl\xFCgel|Body .002Action"
+  - first:
+      74: 1840761186756107443
+    second: "Back Fl\xFCgel|Body StreifenAction"
+  - first:
+      74: 5488458591107428891
+    second: "Back Fl\xFCgel|Body TopAction"
+  - first:
+      74: -5296174987904393871
+    second: "Back Fl\xFCgel|Fl\xFCgel StreifenAction"
+  - first:
+      74: -3453206540079612699
+    second: "Back Fl\xFCgel|Fl\xFCgelAction"
+  - first:
+      74: 1429272655873828106
+    second: "Back Fl\xFCgel|Halterung BreaksAction"
+  - first:
+      74: 8236017192555268118
+    second: "Back Fl\xFCgel|Halterung Reifen Action"
+  - first:
+      74: -5909487782957228758
+    second: "Back Fl\xFCgel|HalterungAction"
+  - first:
+      74: 8042899339702555434
+    second: "Back Fl\xFCgel|Propeller Bl\xE4tterAction"
+  - first:
+      74: -8106856382529326595
+    second: "Back Fl\xFCgel|PropellerAction"
+  - first:
+      74: 4883899398102802688
+    second: "Back Fl\xFCgel|Reifen KernAction"
+  - first:
+      74: 2300356104043007993
+    second: "Back Fl\xFCgel|ReifenAction"
+  - first:
+      74: 734145550944544466
+    second: "Back Fl\xFCgel|StangeAction"
+  - first:
+      74: -8319332497301002273
+    second: "Halterung Breaks|Back Fl\xFCgelAction"
+  - first:
+      74: -6705388136225009035
+    second: Halterung Breaks|Body .001Action
+  - first:
+      74: 1214567262289205346
+    second: Halterung Breaks|Body .002Action
+  - first:
+      74: 975760039907763914
+    second: Halterung Breaks|Body StreifenAction
+  - first:
+      74: -6633206163335757313
+    second: Halterung Breaks|Body TopAction
+  - first:
+      74: -1768420114101416477
+    second: "Halterung Breaks|Fl\xFCgel StreifenAction"
+  - first:
+      74: 6189978629591408666
+    second: "Halterung Breaks|Fl\xFCgelAction"
+  - first:
+      74: -8495466714639625716
+    second: Halterung Breaks|Halterung BreaksAction
+  - first:
+      74: 3302077081805823121
+    second: Halterung Breaks|Halterung Reifen Action
+  - first:
+      74: -4911646763748537745
+    second: Halterung Breaks|HalterungAction
+  - first:
+      74: -4722468926711034889
+    second: "Halterung Breaks|Propeller Bl\xE4tterAction"
+  - first:
+      74: 7385673584780944646
+    second: Halterung Breaks|PropellerAction
+  - first:
+      74: 3268676241104119712
+    second: Halterung Breaks|Reifen KernAction
+  - first:
+      74: 2599939823797747457
+    second: Halterung Breaks|ReifenAction
+  - first:
+      74: 4960998603068318970
+    second: Halterung Breaks|StangeAction
+  - first:
+      74: 7145979381521416973
+    second: "Reifen Kern|Back Fl\xFCgelAction"
+  - first:
+      74: -8138646363612392878
+    second: Reifen Kern|Body .001Action
+  - first:
+      74: 7460239577932247319
+    second: Reifen Kern|Body .002Action
+  - first:
+      74: 7444559878917306500
+    second: Reifen Kern|Body StreifenAction
+  - first:
+      74: -6900131630483484064
+    second: Reifen Kern|Body TopAction
+  - first:
+      74: 7227607055262476472
+    second: "Reifen Kern|Fl\xFCgel StreifenAction"
+  - first:
+      74: -2866427471735275468
+    second: "Reifen Kern|Fl\xFCgelAction"
+  - first:
+      74: -3816455893238483470
+    second: Reifen Kern|Halterung BreaksAction
+  - first:
+      74: 6028862669532405545
+    second: Reifen Kern|Halterung Reifen Action
+  - first:
+      74: -8163872714612221386
+    second: Reifen Kern|HalterungAction
+  - first:
+      74: 2933385133337199386
+    second: "Reifen Kern|Propeller Bl\xE4tterAction"
+  - first:
+      74: 3313659211839529180
+    second: Reifen Kern|PropellerAction
+  - first:
+      74: 4955922255389345718
+    second: Reifen Kern|Reifen KernAction
+  - first:
+      74: 6328181672714597702
+    second: Reifen Kern|ReifenAction
+  - first:
+      74: 4189880741718964532
+    second: Reifen Kern|StangeAction
+  - first:
+      74: -8177484387398828431
+    second: "Body Streifen|Back Fl\xFCgelAction"
+  - first:
+      74: -6520153764709052394
+    second: Body Streifen|Body .001Action
+  - first:
+      74: -6028156989310940159
+    second: Body Streifen|Body .002Action
+  - first:
+      74: -4387116496079064028
+    second: Body Streifen|Body StreifenAction
+  - first:
+      74: 2371240331920025709
+    second: Body Streifen|Body TopAction
+  - first:
+      74: 2455596544788715880
+    second: "Body Streifen|Fl\xFCgel StreifenAction"
+  - first:
+      74: -6933575585645730607
+    second: "Body Streifen|Fl\xFCgelAction"
+  - first:
+      74: -7419145020719969133
+    second: Body Streifen|Halterung BreaksAction
+  - first:
+      74: -668118558976859238
+    second: Body Streifen|Halterung Reifen Action
+  - first:
+      74: 9088611734657753998
+    second: Body Streifen|HalterungAction
+  - first:
+      74: -3528118432323924684
+    second: "Body Streifen|Propeller Bl\xE4tterAction"
+  - first:
+      74: 4621598658526491083
+    second: Body Streifen|PropellerAction
+  - first:
+      74: 2772058277929515044
+    second: Body Streifen|Reifen KernAction
+  - first:
+      74: -2263990630703165532
+    second: Body Streifen|ReifenAction
+  - first:
+      74: -8910208685275443100
+    second: Body Streifen|StangeAction
+  - first:
+      74: 4303274398150792210
+    second: "Propeller|Back Fl\xFCgelAction"
+  - first:
+      74: -1941952776457131087
+    second: Propeller|Body .001Action
+  - first:
+      74: 3276215102283362703
+    second: Propeller|Body .002Action
+  - first:
+      74: -3860701883003712065
+    second: Propeller|Body StreifenAction
+  - first:
+      74: 1086740407912656340
+    second: Propeller|Body TopAction
+  - first:
+      74: 6986537771170283849
+    second: "Propeller|Fl\xFCgel StreifenAction"
+  - first:
+      74: 2830312376724776236
+    second: "Propeller|Fl\xFCgelAction"
+  - first:
+      74: -7812857693403503731
+    second: Propeller|Halterung BreaksAction
+  - first:
+      74: -965499356405521330
+    second: Propeller|Halterung Reifen Action
+  - first:
+      74: 3111309620944187400
+    second: Propeller|HalterungAction
+  - first:
+      74: -8076190470396544225
+    second: "Propeller|Propeller Bl\xE4tterAction"
+  - first:
+      74: -4737357235841528366
+    second: Propeller|PropellerAction
+  - first:
+      74: -4297841332535112173
+    second: Propeller|Reifen KernAction
+  - first:
+      74: -7142651504261638631
+    second: Propeller|ReifenAction
+  - first:
+      74: -8196938141502927256
+    second: Propeller|StangeAction
+  - first:
+      74: 492209888451175712
+    second: "Fl\xFCgel Streifen|Back Fl\xFCgelAction"
+  - first:
+      74: -8669672018429030498
+    second: "Fl\xFCgel Streifen|Body .001Action"
+  - first:
+      74: -9000447183238373696
+    second: "Fl\xFCgel Streifen|Body .002Action"
+  - first:
+      74: -4605645476936780707
+    second: "Fl\xFCgel Streifen|Body StreifenAction"
+  - first:
+      74: -8026029202623605523
+    second: "Fl\xFCgel Streifen|Body TopAction"
+  - first:
+      74: 8365695588737269271
+    second: "Fl\xFCgel Streifen|Fl\xFCgel StreifenAction"
+  - first:
+      74: 6352237455823158382
+    second: "Fl\xFCgel Streifen|Fl\xFCgelAction"
+  - first:
+      74: -6073122647610263420
+    second: "Fl\xFCgel Streifen|Halterung BreaksAction"
+  - first:
+      74: 2336847769962378962
+    second: "Fl\xFCgel Streifen|Halterung Reifen Action"
+  - first:
+      74: 2241240203252539895
+    second: "Fl\xFCgel Streifen|HalterungAction"
+  - first:
+      74: -6976267126878740651
+    second: "Fl\xFCgel Streifen|Propeller Bl\xE4tterAction"
+  - first:
+      74: 5848040365566293584
+    second: "Fl\xFCgel Streifen|PropellerAction"
+  - first:
+      74: -7773262381892033501
+    second: "Fl\xFCgel Streifen|Reifen KernAction"
+  - first:
+      74: 3082561538174530235
+    second: "Fl\xFCgel Streifen|ReifenAction"
+  - first:
+      74: 2509670686426384990
+    second: "Fl\xFCgel Streifen|StangeAction"
+  - first:
+      74: 8974607188600022808
+    second: "Stange|Back Fl\xFCgelAction"
+  - first:
+      74: -1701992145058660547
+    second: Stange|Body .001Action
+  - first:
+      74: 8817844112122929876
+    second: Stange|Body .002Action
+  - first:
+      74: -5967439747407064931
+    second: Stange|Body StreifenAction
+  - first:
+      74: 7696191145802244882
+    second: Stange|Body TopAction
+  - first:
+      74: -7101496474656057946
+    second: "Stange|Fl\xFCgel StreifenAction"
+  - first:
+      74: -4153617673322154957
+    second: "Stange|Fl\xFCgelAction"
+  - first:
+      74: -6613792370723281796
+    second: Stange|Halterung BreaksAction
+  - first:
+      74: 3443294152410084281
+    second: Stange|Halterung Reifen Action
+  - first:
+      74: -5992375536912772775
+    second: Stange|HalterungAction
+  - first:
+      74: 4021774882233656844
+    second: "Stange|Propeller Bl\xE4tterAction"
+  - first:
+      74: 6574656786721939645
+    second: Stange|PropellerAction
+  - first:
+      74: 1477129451948061319
+    second: Stange|Reifen KernAction
+  - first:
+      74: -6882507886936855190
+    second: Stange|ReifenAction
+  - first:
+      74: 6295499626551914678
+    second: Stange|StangeAction
+  - first:
+      74: -7289708710695605543
+    second: "Body Top|Back Fl\xFCgelAction"
+  - first:
+      74: 3766543794252458947
+    second: Body Top|Body .001Action
+  - first:
+      74: -5149704802108050457
+    second: Body Top|Body .002Action
+  - first:
+      74: -6960365360997666430
+    second: Body Top|Body StreifenAction
+  - first:
+      74: 2074541516195173002
+    second: Body Top|Body TopAction
+  - first:
+      74: 7535174690487776953
+    second: "Body Top|Fl\xFCgel StreifenAction"
+  - first:
+      74: -4692064849864373567
+    second: "Body Top|Fl\xFCgelAction"
+  - first:
+      74: 3054995566222697557
+    second: Body Top|Halterung BreaksAction
+  - first:
+      74: -5391807251870374982
+    second: Body Top|Halterung Reifen Action
+  - first:
+      74: 1961324341301529596
+    second: Body Top|HalterungAction
+  - first:
+      74: -5442341111184817848
+    second: "Body Top|Propeller Bl\xE4tterAction"
+  - first:
+      74: 3203572033580154109
+    second: Body Top|PropellerAction
+  - first:
+      74: 215333909637671192
+    second: Body Top|Reifen KernAction
+  - first:
+      74: -19187293653377527
+    second: Body Top|ReifenAction
+  - first:
+      74: -5537682821888317221
+    second: Body Top|StangeAction
+  - first:
+      74: 8379666913431020935
+    second: "Body .001|Back Fl\xFCgelAction"
+  - first:
+      74: -834747259028361809
+    second: Body .001|Body .001Action
+  - first:
+      74: -2754648506856373925
+    second: Body .001|Body .002Action
+  - first:
+      74: 7084015265919869468
+    second: Body .001|Body StreifenAction
+  - first:
+      74: -2856544304518919185
+    second: Body .001|Body TopAction
+  - first:
+      74: -7966708597617696592
+    second: "Body .001|Fl\xFCgel StreifenAction"
+  - first:
+      74: 7009603415237097765
+    second: "Body .001|Fl\xFCgelAction"
+  - first:
+      74: -98884319610917304
+    second: Body .001|Halterung BreaksAction
+  - first:
+      74: -9221188808584048699
+    second: Body .001|Halterung Reifen Action
+  - first:
+      74: -3988447047453328158
+    second: Body .001|HalterungAction
+  - first:
+      74: 3125165491306035559
+    second: "Body .001|Propeller Bl\xE4tterAction"
+  - first:
+      74: -3100691792213293246
+    second: Body .001|PropellerAction
+  - first:
+      74: 2246041281339534957
+    second: Body .001|Reifen KernAction
+  - first:
+      74: 6209404775820969831
+    second: Body .001|ReifenAction
+  - first:
+      74: -6420773274589373956
+    second: Body .001|StangeAction
+  - first:
+      74: -332444775777270126
+    second: "Body .002|Back Fl\xFCgelAction"
+  - first:
+      74: -1038905959598343814
+    second: Body .002|Body .001Action
+  - first:
+      74: -97996993737013374
+    second: Body .002|Body .002Action
+  - first:
+      74: 6360093789475943963
+    second: Body .002|Body StreifenAction
+  - first:
+      74: -3056405510300053864
+    second: Body .002|Body TopAction
+  - first:
+      74: -3730336098444831109
+    second: "Body .002|Fl\xFCgel StreifenAction"
+  - first:
+      74: -3115026232722027731
+    second: "Body .002|Fl\xFCgelAction"
+  - first:
+      74: 2604341826854200650
+    second: Body .002|Halterung BreaksAction
+  - first:
+      74: -7677495139369964157
+    second: Body .002|Halterung Reifen Action
+  - first:
+      74: -6038113290399201833
+    second: Body .002|HalterungAction
+  - first:
+      74: 157476520471867157
+    second: "Body .002|Propeller Bl\xE4tterAction"
+  - first:
+      74: -617500373462144419
+    second: Body .002|PropellerAction
+  - first:
+      74: 3569275428854813639
+    second: Body .002|Reifen KernAction
+  - first:
+      74: -6003660953274031416
+    second: Body .002|ReifenAction
+  - first:
+      74: -3020048155501861146
+    second: Body .002|StangeAction
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Back Fl\xFCgel"
+    second: {fileID: 2100000, guid: 1ada60ccb2f15d9448c6e16da8fe9a69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body + Halterung
+    second: {fileID: 2100000, guid: 24ec8cf3d3d50eb429a1b2fe167c154d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BodyTop
+    second: {fileID: 2100000, guid: f8ef27fc658e3fd469c47bfeb108a60d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Fl\xFCgel"
+    second: {fileID: 2100000, guid: 1e3d850d245a74547bd1de83eae1a338, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Halterung
+    second: {fileID: 2100000, guid: 210b8f97b86888945ac2781213b2b6dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Halterung Breaks
+    second: {fileID: 2100000, guid: 6d6561877eac7cb4392a2a97f0f3cdd1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Halterung Reifen
+    second: {fileID: 2100000, guid: c45bce1a2d350e844b1b9d2f75935863, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 69fb052d317dd8e4f8d310d6551ccd5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Propeller
+    second: {fileID: 2100000, guid: 2364fd4914f60144984f6423f20d4353, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Propeller Bl\xE4tter"
+    second: {fileID: 2100000, guid: 13eeda7c9090b4e419b55b329e477519, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Reifen
+    second: {fileID: 2100000, guid: ea07810b6e0a5c2468a576a525fd090a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Reifen Kern
+    second: {fileID: 2100000, guid: 6c28b30a56fe31145b84dfad591f5f25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stange
+    second: {fileID: 2100000, guid: 098cbd48a0e418f4fb5d22fe01537e07, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Streifen
+    second: {fileID: 2100000, guid: be345857c2b112240b21940da1f7fc72, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

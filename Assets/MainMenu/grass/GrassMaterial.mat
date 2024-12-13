@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GrassMaterial
+  m_Shader: {fileID: 4800000, guid: 909f563ecf94d9247b9d20984b40a55d, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BendFactor: 1
+    - _RandomSeed: 1
+    - _WaveAmplitude: 0.045
+    - _WaveFrequency: 3.18
+    - _WaveSpeed: 1.76
+    - _WaveStrength: 0.5
+    - _WindSpeed: 10
+    - _WindStrength: 1
+    m_Colors:
+    - _Color: {r: 0.0029369951, g: 0.6226415, b: 0.025085025, a: 1}
+    - _WindDirection: {r: 0, g: 0, b: 14.39, a: 1}
+  m_BuildTextureStacks: []
