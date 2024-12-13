@@ -1,0 +1,2 @@
+Assets/Location4/Crack4.wav filter=lfs diff=lfs merge=lfs -text
+Assets/Scenes/Huhn.unity filter=lfs diff=lfs merge=lfs -text
