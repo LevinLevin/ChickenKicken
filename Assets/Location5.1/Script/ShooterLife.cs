@@ -55,7 +55,7 @@ public class ShooterLife : MonoBehaviour
 
             StartCoroutine(CameraShake());
 
-            if(leben == 2)
+            if(leben == 1)
             {
                 bloodImage.gameObject.SetActive(true);
             }
