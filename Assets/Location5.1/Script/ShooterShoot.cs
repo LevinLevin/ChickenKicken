@@ -1,52 +1,123 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShooterShoot : MonoBehaviour
 {
+    private int munition;
+
     //joystick kontrolliert die richtung, des wurfgeschoss
     [SerializeField] private DynamicJoystick joystick;
 
-    [SerializeField] private GameObject gun;
+    [SerializeField] private Transform gun;
 
     ObjectPooler objectPooler;//für die bullets
 
     public GameObject bulletPrefab;
-    public float bulletSpeed = 20f;
-    public float bulletAngle = 5f;
+    public float bulletSpeed = 20;
+    //public float bulletAngle = 5f;
 
-    Vector3 bulletDirection;
+    Vector3 bulletDirectionRight;
+    Vector3 bulletDirectionLeft;
 
-    private void Update()
+    [SerializeField] Image ammoFill;
+    [SerializeField] GameObject ammoSlider;
+
+    private void Start()
     {
-        float horizontalInput = joystick.Horizontal;
-        float verticalInput = joystick.Vertical;
+        bulletDirectionRight = (gun.forward + gun.right * 0.9f + gun.up * 0.6f).normalized;
+        bulletDirectionLeft = (gun.forward + -gun.right * 0.9f + gun.up * 0.6f).normalized;
 
-        Vector3 joystickDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
-        Vector3 objectPosition = gun.transform.position;
-        Vector3 objectToJoystick = objectPosition + joystickDirection - objectPosition;
+        objectPooler = ObjectPooler.Instance;
 
-        bulletDirection = Quaternion.AngleAxis(bulletAngle, Vector3.right) * objectToJoystick;
-
-        Debug.DrawRay(objectPosition, objectToJoystick, Color.red);
+        munition = 10;
+        UpdateAmmoUI();
     }
 
-    private void FireBullet(Vector3 direction)
+    private void OnEnable()
     {
-        // Instantiate the bullet prefab at the position of the GameObject
-        GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
-        Destroy(bullet,10f);
+        Munition.munitionCollected += SetMunition;
+    }
 
-        // Apply the modified direction vector as the initial velocity of the bullet
+    //private void Update()
+    //{
+    //    float horizontalInput = joystick.Horizontal;
+    //    float verticalInput = joystick.Vertical;
+
+    //    Vector3 joystickDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+    //    Vector3 objectPosition = gun.transform.position;
+    //    Vector3 objectToJoystick = objectPosition + joystickDirection - objectPosition;
+
+    //    bulletDirection = Quaternion.AngleAxis(bulletAngle, Vector3.right) * objectToJoystick;
+    //}
+
+    public void FireBulletRight()
+    {
+        if (munition <= 0) return;
+        GameObject bullet = objectPooler.SpawnFromPool("Bullet", gun.position, Quaternion.identity);
+
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-        bulletRigidbody.velocity = direction.normalized * bulletSpeed;
+        bulletRigidbody.velocity = bulletDirectionRight * bulletSpeed;
+        munition--;
+        UpdateAmmoUI();
     }
 
-    public void Fire()
+    public void FireBulletLeft()
     {
-        if (joystick.Horizontal != 0 || joystick.Vertical != 0)
-        {
-            FireBullet(bulletDirection);
-        }
+        if (munition <= 0) return;
+        GameObject bullet = objectPooler.SpawnFromPool("Bullet", gun.position, Quaternion.identity);
+
+        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+        bulletRigidbody.velocity = bulletDirectionLeft * bulletSpeed;
+        munition--;
+        UpdateAmmoUI();
+    }
+
+    //public void Fire()
+    //{
+    //    if (munition <= 0) return;
+    //    if ((joystick.Horizontal != 0 || joystick.Vertical != 0) && munition != 0)
+    //    {
+    //        FireBullet(bulletDirection);
+    //        munition--;
+    //    }
+    //}
+
+    /// <summary>
+    /// Sets the eggs of the chicken +7 and is capped over 30
+    /// </summary>
+    public void SetMunition()
+    {
+        if (munition > 30)
+            return;
+
+        munition += 7;
+        UpdateAmmoUI();
+    }
+
+    /// <summary>
+    /// Refills the eggs of the chicken to 20
+    /// </summary>
+    public void RefillMunition()
+    {
+        munition = 20;
+        UpdateAmmoUI();
+    }
+
+    private void UpdateAmmoUI()
+    {
+        float fill = Mathf.Clamp01((float)munition / 30);
+        ammoFill.fillAmount = fill;
+        LeanTween.scale(ammoSlider, Vector3.one * 1.05f, 0.2f)
+         .setEaseOutBack()
+         .setOnComplete(() =>
+         {
+             LeanTween.scale(ammoSlider, Vector3.one, 0.2f)
+                      .setEaseInBack();
+         });
+    }
+
+    private void OnDisable()
+    {
+        Munition.munitionCollected -= SetMunition;
     }
 }

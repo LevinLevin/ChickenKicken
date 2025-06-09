@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Getroffen : MonoBehaviour, IPooledObject
 {
-    private int treffer;
-
     //damit das Flugzeug nur von Patronen des Huhn getroffen werden kann
     public LayerMask PatroneL;
 
@@ -62,7 +60,7 @@ public class Getroffen : MonoBehaviour, IPooledObject
             //PlayerPrefs.SetInt("AnzahlDerPunkte", PlayerPrefs.GetInt("AnzahlDerPunkte", 0) + 33);
             if (sm != null)
             {
-                sm.AddPoint(33);
+                sm.AddPoint(67);
             }
         }
     }

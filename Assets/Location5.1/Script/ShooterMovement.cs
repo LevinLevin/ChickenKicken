@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShooterMovement : MonoBehaviour
 {
-    public int desiredLane = 1; //ein integer für jede linie 0 für links, 1 für mitte, usw
-    public float laneDistance = 4; //die distanz zwischen den linien
+    public int desiredLane = 1;
+    public float laneDistance = 4;
 
     [SerializeField] public Rigidbody rb;
     public float distToGround = 0.5f;
     private Vector3 targetPosition;
 
-    // Update is called once per frame
     void Update()
     {
         targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
@@ -39,7 +36,6 @@ public class ShooterMovement : MonoBehaviour
         {
             desiredLane = 3;
         }
-        Debug.Log("desiredLane: " + desiredLane);
     }
 
     public void NachLinks()
@@ -49,6 +45,5 @@ public class ShooterMovement : MonoBehaviour
         {
             desiredLane = 0;
         }
-        Debug.Log("desiredLane: " + desiredLane);
     }
 }

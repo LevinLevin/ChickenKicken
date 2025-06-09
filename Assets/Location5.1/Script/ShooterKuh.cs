@@ -1,8 +1,11 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class ShooterKuh : MonoBehaviour
 {
+    public static ShooterKuh Instance;
+
     public bool ready;
     int readyCount;
 
@@ -10,9 +13,11 @@ public class ShooterKuh : MonoBehaviour
     Vector3 targetPosition = Vector3.zero;
 
     [Header("Power")]
-    public GameObject gun1, gun2, gun3;
-    public GameObject KugelPref;
+    public Transform gun1, gun2, gun3;
+    //public GameObject KugelPref;
+    private ObjectPooler pooler;
     public float bulletSpeed;
+    private float wurfSpeed;
 
     //ein int für das random event
     int gunPicker;
@@ -25,10 +30,46 @@ public class ShooterKuh : MonoBehaviour
 
     int level;
 
-    // Start is called before the first frame update
+    [Header("ThemeMusic")]
+    [SerializeField] AudioClip MainTheme;
+    [SerializeField] AudioClip BossTheme;
+    [SerializeField] AudioSource MusicPlayer;
+
+    [Header("Upgrades")]
+    [SerializeField] GameObject UpgradeWindow;
+    [SerializeField] GameObject BtnAmmo;
+    [SerializeField] GameObject BtnHealth;
+    [SerializeField] TMP_Text TxtWave;
+    [SerializeField] ShooterLife huhnLife;
+    [SerializeField] ShooterShoot huhnShoot;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
     void Start()
     {
+        if (PlayerPrefs.GetInt("MusikAus", 1) == 1)
+        {
+            //musik an
+            MusicPlayer.clip = MainTheme;
+            MusicPlayer.Play();
+        }
+        else
+        {
+            MusicPlayer.volume = 0.0f;
+        }
+
+        UpgradeWindow.SetActive(false);
+
+        pooler = ObjectPooler.Instance;
+
         level = 0;
+        wurfSpeed = 1f;
 
         readyCount = 0;
         kuhTransform = transform;
@@ -36,10 +77,16 @@ public class ShooterKuh : MonoBehaviour
 
         //Diese Zeile muss deaktiviert werden, wenn demo version raus ist
         //Endgame();
+        //ShowUpgradeWindow();
     }
 
     void Endgame()
     {
+        MusicPlayer.Stop();
+        MusicPlayer.clip = BossTheme;
+        MusicPlayer.volume += 0.05f;
+        MusicPlayer.Play();
+
         // Set the target position to move the kuh up by 5 units on the Y axis
         targetPosition.x = kuhTransform.position.x;
         targetPosition.y = kuhTransform.position.y + 5f;
@@ -48,11 +95,30 @@ public class ShooterKuh : MonoBehaviour
         // Move the kuh to the target position
         kuhTransform.position = targetPosition;
 
+        //wurfspeed ist hoeher
+        if(level == 2)
+        {
+            wurfSpeed = 0.9f;
+        }
+        else if(level == 3)
+        {
+            wurfSpeed = 0.8f;
+        }
+        else if(level >= 4)
+        {
+            wurfSpeed = 0.7f;
+        }
+
         StartCoroutine(Schiessen());
     }
 
     void EndTheEndgame(int iLevel)
     {
+        MusicPlayer.Stop();
+        MusicPlayer.clip = MainTheme;
+        MusicPlayer.volume -= 0.05f;
+        MusicPlayer.Play();
+
         Debug.Log("Endgame ist beendet");
         //das level wird nach jeder runde erhöht um einen score zu berechnen
         level += iLevel;
@@ -70,23 +136,39 @@ public class ShooterKuh : MonoBehaviour
         // Move the kuh to the target position
         kuhTransform.position = targetPosition;
 
-        //der bool muss zurück gesetzt werden, sodass alle schafe wieder auftauchen
-        shooterSchaf1.ready = false;
-        shooterSchaf2.ready = false;
-        shooterSchaf3.ready = false;
-        shooterSchaf4.ready = false;
+        ShowUpgradeWindow();
 
-        shooterSchaf1.schonPassiert= false;
-        shooterSchaf2.schonPassiert = false;
-        shooterSchaf3.schonPassiert = false;
-        shooterSchaf4.schonPassiert = false;
-
-        shooterSchaf1.stufe = 0;
-        shooterSchaf2.stufe = 0;
-        shooterSchaf3.stufe = 0;
-        shooterSchaf4.stufe = 0;
+        //schafe werden zurueckgesetzt
+        shooterSchaf1.ResetStats();
+        shooterSchaf2.ResetStats();
+        shooterSchaf3.ResetStats();
+        shooterSchaf4.ResetStats();
 
         readyCount = 0;
+    }
+
+    void ShowUpgradeWindow()
+    {
+        Time.timeScale = 0f;
+
+        UpgradeWindow.SetActive(true);
+        TxtWave.text = "Wave: " + level.ToString();
+        LeanTween.scale(BtnAmmo, Vector3.one * 1.05f, 0.8f).setEaseInOutSine().setLoopPingPong().setIgnoreTimeScale(true);
+        LeanTween.scale(BtnHealth, Vector3.one * 1.05f, 0.8f).setEaseInOutSine().setLoopPingPong().setIgnoreTimeScale(true);
+    }
+
+    public void SetAmmo()
+    {
+        Time.timeScale = 1f;
+        huhnShoot.RefillMunition();
+        UpgradeWindow.SetActive(false);
+    }
+
+    public void SetHealth()
+    {
+        Time.timeScale = 1f;
+        huhnLife.SetLeben();
+        UpgradeWindow.SetActive(false);
     }
 
     public void Setready(int anzahl)
@@ -102,27 +184,39 @@ public class ShooterKuh : MonoBehaviour
 
     public IEnumerator Schiessen()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSecondsRealtime(4f);
 
         Rollen();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(wurfSpeed);
 
         Rollen();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(wurfSpeed);
 
         Rollen();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(wurfSpeed);
 
         Rollen();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(wurfSpeed);
 
         Rollen();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(wurfSpeed);
+
+        Rollen();
+
+        yield return new WaitForSecondsRealtime(wurfSpeed);
+
+        Rollen();
+
+        yield return new WaitForSecondsRealtime(wurfSpeed);
+
+        Rollen();
+
+        yield return new WaitForSecondsRealtime(3);
 
         EndTheEndgame(1);
     }
@@ -134,21 +228,36 @@ public class ShooterKuh : MonoBehaviour
         switch (gunPicker)
         {
             case 1:
-                GameObject bullet = Instantiate(KugelPref, gun1.transform.position, Quaternion.identity);
-                Destroy(bullet, 4f);
-                bullet.GetComponent<Rigidbody>().AddForce(-transform.forward * bulletSpeed, ForceMode.Impulse);
+                //GameObject bullet = Instantiate(KugelPref, gun1.transform.position, Quaternion.identity);
+                GameObject bullet = pooler.SpawnFromPool("Barrel", gun1.position, Quaternion.identity);
+
+                //Destroy(bullet, 4f);
+                //bullet.GetComponent<Rigidbody>().AddForce(-transform.forward * bulletSpeed, ForceMode.Impulse);
+                Rigidbody bulletRB = bullet.GetComponent<Rigidbody>();
+                bulletRB.velocity = Vector3.zero;
+                bulletRB.AddForce(-gun1.forward * bulletSpeed, ForceMode.Impulse);
                 break;
 
                 case 2:
-                GameObject kugel = Instantiate(KugelPref, gun2.transform.position, Quaternion.identity);
-                Destroy(kugel, 4f);
-                kugel.GetComponent<Rigidbody>().AddForce(-transform.forward * bulletSpeed, ForceMode.Impulse);
+                //GameObject kugel = Instantiate(KugelPref, gun2.transform.position, Quaternion.identity);
+                GameObject burrel = pooler.SpawnFromPool("Barrel", gun2.position, Quaternion.identity);
+
+                //Destroy(burrel, 4f);
+                //burrel.GetComponent<Rigidbody>().AddForce(-transform.forward * bulletSpeed, ForceMode.Impulse);
+                Rigidbody burrelRB = burrel.GetComponent<Rigidbody>();
+                burrelRB.velocity = Vector3.zero;
+                burrelRB.AddForce(-gun2.forward * bulletSpeed, ForceMode.Impulse);
                 break;
 
                 case 3:
-                GameObject kullel = Instantiate(KugelPref, gun3.transform.position, Quaternion.identity);
-                Destroy(kullel, 4f);
-                kullel.GetComponent<Rigidbody>().AddForce(-transform.forward * bulletSpeed, ForceMode.Impulse);
+                //GameObject kullel = Instantiate(KugelPref, gun3.transform.position, Quaternion.identity);
+                GameObject kullel = pooler.SpawnFromPool("Barrel", gun3.position, Quaternion.identity);
+
+                //Destroy(kullel, 4f);
+                //kullel.GetComponent<Rigidbody>().AddForce(-transform.forward * bulletSpeed, ForceMode.Impulse);
+                Rigidbody kullelRB = kullel.GetComponent<Rigidbody>();
+                kullelRB.velocity = Vector3.zero;
+                kullelRB.AddForce(-gun1.forward * bulletSpeed, ForceMode.Impulse);
                 break;
 
         }

@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Unity.Notifications.Android;
 using UnityEngine;
-using Unity.Notifications.Android;
 
 public class notifications : MonoBehaviour
 {

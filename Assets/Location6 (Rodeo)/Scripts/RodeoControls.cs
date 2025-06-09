@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class RodeoControls : MonoBehaviour
 {
-    bool springt;
+    //bool springt;
     int Cowboyhut;
 
     public Slider slider;
@@ -29,7 +29,7 @@ public class RodeoControls : MonoBehaviour
 
     public void Springen()
     {
-        springt = true;
+        //springt = true;
         if (Cowboyhut == 2)
         {
             Invoke(nameof(Springtnicht), 1.7f);
@@ -45,7 +45,7 @@ public class RodeoControls : MonoBehaviour
 
     public void Springtnicht()
     {
-        springt = false;
+        //springt = false;
     }
 
 

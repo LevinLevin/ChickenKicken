@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class namenbestatigen : MonoBehaviour
@@ -14,10 +12,18 @@ public class namenbestatigen : MonoBehaviour
     public void Awake()
     {
         Name.text = PlayerPrefs.GetString("NameDesHuhn");
+        eingabe.text = PlayerPrefs.GetString("NameDesHuhn");
     }
 
     public void GutSo()
     {
+        if (string.IsNullOrWhiteSpace(eingabe.text))
+        {
+            NameEingabeFeld.SetActive(false);
+            RestlicheCanvas.SetActive(true);
+            return;
+        }
+
         //das name feld bekommt die schrift vom eingabefeld
         Name.text = eingabe.text;
         //der name wird gespeichert 

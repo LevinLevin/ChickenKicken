@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
-using TMPro;
 
 public class BootManager : MonoBehaviour
 {
@@ -16,11 +13,9 @@ public class BootManager : MonoBehaviour
 
     GoldManager gm;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        gm= FindObjectOfType<GoldManager>();
+        gm= GoldManager.instance;
 
         foreach (BootBlueprint schuh in Schuhe)
         {
@@ -41,12 +36,19 @@ public class BootManager : MonoBehaviour
         }
 
         boot[currentBoot].SetActive(true);
+        UpdateUI();
+        StuffEvents.TriggerUIChange();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        updateUI();
+        StuffEvents.OnUIChange += UpdateUI;
+    }
+
+    private void OnDisable()
+    {
+        StuffEvents.OnUIChange -= UpdateUI;
     }
 
     public void nAnderes()
@@ -63,10 +65,15 @@ public class BootManager : MonoBehaviour
         BootBlueprint a = Schuhe[currentBoot];
         if (!a.isUnlocked)
         {
+            UpdateUI();
+            StuffEvents.TriggerUIChange();
             return;
         }
-
         PlayerPrefs.SetInt("SelectedBoot", currentBoot);
+
+        //UI
+        UpdateUI();
+        StuffEvents.TriggerUIChange();
     }
 
     public void Unlock()
@@ -81,10 +88,16 @@ public class BootManager : MonoBehaviour
         {
             gm.RemoveGold(a.price);
         }
+
+        //UI
+        UpdateUI();
+        StuffEvents.TriggerUIChange();
     }
 
-    private void updateUI()
+    private void UpdateUI()
     {
+        erwerben.interactable = false;
+
         BootBlueprint a = Schuhe[currentBoot];
         if (a.isUnlocked)
         {
@@ -94,7 +107,7 @@ public class BootManager : MonoBehaviour
         {
             erwerben.gameObject.SetActive(true);
             kaufen.text = "PURCHASE " + a.price;
-            if (a.price <= PlayerPrefs.GetInt("AnzahlDesGeldes", 0))
+            if (a.price <= gm.GetGold())
             {
                 erwerben.interactable = true;
             }
@@ -103,6 +116,6 @@ public class BootManager : MonoBehaviour
                 erwerben.interactable = false;
             }
         }
-
+        Abilities.SetBootBlueprint(a);
     }
 }

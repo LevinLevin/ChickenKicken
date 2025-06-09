@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Cinemachine;
+using System.Collections;
+using UnityEngine;
 
 public class TaschenBus : MonoBehaviour
 {
@@ -19,7 +18,7 @@ public class TaschenBus : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         StartCoroutine(Shaker());
-        PlayerPrefs.SetInt("AnzahlDerTN", PlayerPrefs.GetInt("AnzahlDerTN", 0) + 1);
+        RunnerGamerOver.instance.Stolpern();
     }
 
     //kamera soll wackeln 

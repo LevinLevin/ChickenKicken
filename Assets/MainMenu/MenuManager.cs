@@ -19,7 +19,11 @@ public class MenuManager : MonoBehaviour
         LoadQuality();
 
         //für den update text
-        TxtUpdate.text = PlayerPrefs.GetString("NameDesHuhn") + " likes you :)";
+        if (PlayerPrefs.GetString("NameDesHuhn") == null || string.IsNullOrWhiteSpace(PlayerPrefs.GetString("NameDesHuhn")))
+            TxtUpdate.text = "Have fun!";
+        else
+            TxtUpdate.text = PlayerPrefs.GetString("NameDesHuhn") + " likes you :)";
+
         LeanTween.scale(upText, new Vector3(1.04f, 1.04f, 1.04f), 1f).setEaseOutQuart().setLoopPingPong();
     }
 

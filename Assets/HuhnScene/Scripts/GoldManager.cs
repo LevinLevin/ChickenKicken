@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GoldManager : MonoBehaviour
@@ -13,6 +11,11 @@ public class GoldManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         geld = PlayerPrefs.GetInt("AnzahlDesGeldes", 0);
 
         geldText.text = geld.ToString() + " Gold";
@@ -22,6 +25,11 @@ public class GoldManager : MonoBehaviour
     {
         geld += pGeld;
         geldText.text = geld.ToString() + " Gold";
+    }
+
+    public int GetGold()
+    {
+        return geld;
     }
 
     public void RemoveGold(int pGeld)

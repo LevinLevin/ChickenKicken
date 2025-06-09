@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
-using TMPro;
 
 public class BodyManager : MonoBehaviour
 {
@@ -11,16 +8,14 @@ public class BodyManager : MonoBehaviour
     public GameObject[] korper;
 
     public BodyBlueprint[] Buddys;
-    public Button erwerben;
+    public Button BtnErwerben;
     public Text kaufen;
 
     GoldManager gm;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        gm = FindObjectOfType<GoldManager>();
+        gm = GoldManager.instance;
 
         foreach (BodyBlueprint body in Buddys)
         {
@@ -41,16 +36,23 @@ public class BodyManager : MonoBehaviour
         }
 
         korper[currentBody].SetActive(true);
+        UpdateUI();
+        StuffEvents.TriggerUIChange();
+
+    }
+    private void OnEnable()
+    {
+        StuffEvents.OnUIChange += UpdateUI;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        updateUI();
+        StuffEvents.OnUIChange -= UpdateUI;
     }
 
     public void nAnderes()
     {
+        UpdateUI();
         korper[currentBody].SetActive(false);
 
         currentBody++;
@@ -63,10 +65,14 @@ public class BodyManager : MonoBehaviour
         BodyBlueprint b = Buddys[currentBody];
         if (!b.isUnlocked)
         {
+            UpdateUI();
+            StuffEvents.TriggerUIChange();
             return;
         }
 
         PlayerPrefs.SetInt("SelectedBody", currentBody);
+        UpdateUI();
+        StuffEvents.TriggerUIChange();
     }
 
     public void Unlock()
@@ -81,28 +87,33 @@ public class BodyManager : MonoBehaviour
         {
             gm.RemoveGold(b.price);
         }
+        UpdateUI();
+        StuffEvents.TriggerUIChange();
     }
 
-    private void updateUI()
+    private void UpdateUI()
     {
+        BtnErwerben.interactable = false;
+
         BodyBlueprint b = Buddys[currentBody];
         if (b.isUnlocked)
         {
-            erwerben.gameObject.SetActive(false);
+            BtnErwerben.gameObject.SetActive(false);
         }
         else
         {
-            erwerben.gameObject.SetActive(true);
+            BtnErwerben.gameObject.SetActive(true);
             kaufen.text = "PURCHASE " + b.price;
-            if (b.price <= PlayerPrefs.GetInt("AnzahlDesGeldes", 0))
+            if (b.price <= gm.GetGold())
             {
-                erwerben.interactable = true;
+                BtnErwerben.interactable = true;
             }
             else
             {
-                erwerben.interactable = false;
+                BtnErwerben.interactable = false;
             }
         }
-
+        //ability
+        Abilities.SetBodyBlueprint(b);
     }
 }

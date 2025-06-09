@@ -6,10 +6,16 @@ public class SpawnChik : MonoBehaviour
 {
     public GameObject Chicken;
     public Transform Spawnpoint;
-    private Touch touch;
+
+    public bool isKorb;
+
+    public Korb korb;
 
     void OnTriggerEnter(Collider others)
     {
+        if (korb != null && !isKorb)
+            korb.ResetCombo();
+
         Chicken.transform.position = Spawnpoint.transform.position;
         StartCoroutine(Coroutine());
     }

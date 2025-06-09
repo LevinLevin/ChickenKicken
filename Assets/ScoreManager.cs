@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-
-    public static ScoreManager instance;
+    public static ScoreManager Instance;
 
     public Text scoreText;
     public static int score;
@@ -13,6 +12,11 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+
         score = PlayerPrefs.GetInt("AnzahlDerPunkte", 0);
         scoreText.text = score.ToString() + " C-Bucks";
     }
@@ -22,6 +26,11 @@ public class ScoreManager : MonoBehaviour
     {
         score += pPunkte;
         scoreText.text = score.ToString() + " C-Bucks";
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 
     public void RemovePoint(int pPunkte)
@@ -36,7 +45,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     //aufruf zum speichern für andere methoden
-    public void LoadScore()
+    public void SaveScore()
     {
         PlayerPrefs.SetInt("AnzahlDerPunkte", score);
     }

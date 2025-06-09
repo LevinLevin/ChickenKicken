@@ -194,7 +194,7 @@ MeshRenderer:
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &3205105002674349328
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -211,7 +211,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &2918195987813226346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,8 +535,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0324755, y: 0.0817763, z: 0.043111492}
-  m_Center: {x: -0.000007853047, y: -0.000028981414, z: -0.006818482}
+  m_Size: {x: 0.02235465, y: 0.08177628, z: 0.043111492}
+  m_Center: {x: -0.0001099904, y: -0.000028981944, z: -0.0068184813}
 --- !u!1 &3165458478426680932
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,8 +679,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.03247551, y: 0.08177629, z: 0.043111533}
-  m_Center: {x: -0.000007837899, y: -0.000028979242, z: -0.0068185017}
+  m_Size: {x: 0.021876836, y: 0.08177629, z: 0.043111533}
+  m_Center: {x: -0.00007704374, y: -0.000028978788, z: -0.006818501}
 --- !u!1 &3523770806138853043
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,8 +834,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3840851131975357035}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.20539856, y: -0.6243708, z: 11.0576}
-  m_LocalScale: {x: 4.9092355, y: 3.6110892, z: 0.5955969}
+  m_LocalPosition: {x: 0.2054, y: -0.6244, z: 11.4418}
+  m_LocalScale: {x: 4.9092355, y: 3.6110892, z: 0.3491518}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6837405982452882071}
@@ -1190,7 +1190,7 @@ MeshRenderer:
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &6037774977334993305
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1207,7 +1207,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &6327326118703780835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1343,8 +1343,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.032475516, y: 0.08177631, z: 0.04311151}
-  m_Center: {x: -0.000007704187, y: -0.000028984856, z: -0.0068184906}
+  m_Size: {x: 0.021007007, y: 0.081776306, z: 0.04311151}
+  m_Center: {x: 0.0003088756, y: -0.000028983133, z: -0.006818491}
 --- !u!1 &7399440568838129111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,7 +1994,7 @@ MeshRenderer:
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &5521658365403751504
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2011,7 +2011,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &5234747138618742314
 MonoBehaviour:
   m_ObjectHideFlags: 0

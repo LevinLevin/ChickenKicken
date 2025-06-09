@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine.UI;
 using UnityEngine;
-using Cinemachine;
 
 public class ShooterSchafe : MonoBehaviour
 {
@@ -18,35 +13,37 @@ public class ShooterSchafe : MonoBehaviour
     public int MyLane; //the lane of the sheep
     private float time; //time the sheep is hiding or show
 
+    private ObjectPooler pooler;
+    private ScoreManager sM;
 
     public GameObject bulletPrefab;
     Rigidbody bulletRb;
-    public float bulletSpeed;
-    [SerializeField] private GameObject gun;
+    [Tooltip("Something around 5 to 15")] public float bulletSpeed;
+    [SerializeField] private Transform gun;
 
     private bool versteckt;
     private bool shooten;
     private bool flying;
 
     //this bool checks if it is time for the endboss
-    public bool ready;
-    public bool schonPassiert;
-    public int stufe;
+    private bool ready;
+    private bool schonPassiert;
+
     //endboss
     [SerializeField] ShooterKuh Kuh;
 
-    int schaden;
+    [SerializeField] GameObject DeathStone;
 
+    int schafLeben;
 
     //punkte bekommen
     public GameObject txtPunkte;
-    ScoreManager sM;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        sM = FindObjectOfType<ScoreManager>();
+        pooler = ObjectPooler.Instance;
+
+        sM = ScoreManager.Instance;
 
         bulletRb = bulletPrefab.GetComponent<Rigidbody>();
 
@@ -58,29 +55,25 @@ public class ShooterSchafe : MonoBehaviour
 
         Verstecken();
 
-        //stufe wird erhöht, wenn getroffen
-        stufe = 0;
         schonPassiert= false;
         ready= false;
 
         if(PlayerPrefs.GetInt("AbilityNumber", 0) == 4)
         {
-            schaden = 7;
+            schafLeben = 7;
             Debug.Log("Schaden auf 10 minimiert");
         }
         else
         {
-            schaden = 12;
+            schafLeben = 12;
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(movement != null)
         {
             Lane = movement.desiredLane;
-            Debug.Log("Lane: " + Lane);
         }
 
         if(Lane== MyLane && !shooten && !versteckt)
@@ -92,17 +85,6 @@ public class ShooterSchafe : MonoBehaviour
         {
             shooten= false;
         }
-
-        //schaden muss mit Stufe erreicht werden, um kuh zu beschwören
-        if(stufe == schaden)
-        {
-            ready= true;
-            if(!schonPassiert)
-            {
-                Kuh.Setready(1);
-                schonPassiert= true;
-            }
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -113,8 +95,18 @@ public class ShooterSchafe : MonoBehaviour
             {
                 LeanTween.scale(txtPunkte, new Vector3(1.08f, 1.08f, 1.08f), 0.6f).setEase(LeanTweenType.easeOutBounce);
                 LeanTween.scale(txtPunkte, new Vector3(1f, 1f, 1f), 0.3f).setDelay(0.3f).setEase(LeanTweenType.easeOutBack);
-                sM.AddPoint(1);
-                stufe++;
+                sM.AddPoint(57);
+                schafLeben--;
+                //schaden muss mit Stufe erreicht werden, um kuh zu beschwören
+                if (schafLeben <= 0)
+                {
+                    ready = true;
+                    if (!schonPassiert)
+                    {
+                        Kuh.Setready(1);
+                        schonPassiert = true;
+                    }
+                }
             }
         }
     }
@@ -123,6 +115,9 @@ public class ShooterSchafe : MonoBehaviour
     {
         if(!versteckt)
         {
+            if(ready)
+                DeathStone.SetActive(true);
+
             // Set the target position to move the sheep down by 5 units on the Y axis
             target1Position.x = sheep1Transform.position.x;
             target1Position.y = sheep1Transform.position.y - 5f;
@@ -134,7 +129,7 @@ public class ShooterSchafe : MonoBehaviour
             versteckt= true;
             shooten = false;
         }
-        time = Random.Range(3.0f, 5.0f);
+        time = Random.Range(3.0f, 7.0f);
         Invoke(nameof(hervorkommen), time);
     }
 
@@ -142,6 +137,7 @@ public class ShooterSchafe : MonoBehaviour
     {
         if(versteckt && !ready)
         {
+            DeathStone.SetActive(false);
             // Set the target position to move the sheep up by 5 units on the Y axis
             target1Position.x = sheep1Transform.position.x;
             target1Position.y = sheep1Transform.position.y + 5f;
@@ -152,17 +148,34 @@ public class ShooterSchafe : MonoBehaviour
 
             versteckt = false;
         }
-        time = Random.Range(2.0f, 4.0f);
+        time = Random.Range(2.0f, 5.0f);
         Invoke(nameof(Verstecken), time);
     }
 
     public void ShootBullet()
     {
-        // bullet erstellen
-        GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
-        Destroy(bullet, 4f);
+
+        GameObject bullet = pooler.SpawnFromPool("Apple", gun.position, Quaternion.identity);
 
         // Add force to the bullet
-        bullet.GetComponent<Rigidbody>().AddForce(-transform.right * bulletSpeed, ForceMode.Impulse);
+        Rigidbody bulletRB = bullet.GetComponent<Rigidbody>();
+        bulletRB.velocity = Vector3.zero;
+        bulletRB.AddForce(-gun.right * bulletSpeed, ForceMode.Impulse);
+    }
+
+    public void ResetStats()
+    {
+        if (PlayerPrefs.GetInt("AbilityNumber", 0) == 4)
+        {
+            schafLeben = 7;
+            Debug.Log("Schaden auf 10 minimiert");
+        }
+        else
+        {
+            schafLeben = 12;
+        }
+
+        schonPassiert = false;
+        ready = false;
     }
 }

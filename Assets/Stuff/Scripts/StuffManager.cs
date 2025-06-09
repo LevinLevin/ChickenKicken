@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 public class StuffManager : MonoBehaviour
 {
@@ -19,7 +15,6 @@ public class StuffManager : MonoBehaviour
     GoldManager gm;
     ScoreManager sm;
 
-    // Start is called before the first frame update
     void Start()
     {
         gm = FindObjectOfType<GoldManager>();
@@ -45,12 +40,18 @@ public class StuffManager : MonoBehaviour
         }
 
         kopf[currentKopf].SetActive(true);
+        UpdateUI();
+        StuffEvents.TriggerUIChange();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        updateUI();
+        StuffEvents.OnUIChange += UpdateUI;
+    }
+
+    private void OnDisable()
+    {
+        StuffEvents.OnUIChange -= UpdateUI;
     }
 
     public void nAnderes()
@@ -67,10 +68,15 @@ public class StuffManager : MonoBehaviour
         HutBlueprint c = platz[currentKopf];
         if (!c.isUnlocked)
         {
+            UpdateUI();
+            StuffEvents.TriggerUIChange();
+
             return;
         }
 
         PlayerPrefs.SetInt("SelectedHut", currentKopf);
+        UpdateUI();
+        StuffEvents.TriggerUIChange();
     }
 
     public void Unlock()
@@ -85,10 +91,14 @@ public class StuffManager : MonoBehaviour
         {
             gm.RemoveGold(c.price);
         }
+        UpdateUI();
+        StuffEvents.TriggerUIChange();
     }
 
-    private void updateUI()
+    private void UpdateUI()
     {
+        erwerben.interactable = false;
+
         HutBlueprint c = platz[currentKopf];
         if (c.isUnlocked)
         {
@@ -98,7 +108,7 @@ public class StuffManager : MonoBehaviour
         {
             erwerben.gameObject.SetActive(true);
             kaufen.text = "PURCHASE " + c.price;
-            if (c.price <= PlayerPrefs.GetInt("AnzahlDesGeldes", 0))
+            if (c.price <= gm.GetGold())
             {
                 erwerben.interactable = true;
             }
@@ -109,7 +119,7 @@ public class StuffManager : MonoBehaviour
         }
 
         //gold kaufen möglich oder nicht
-        if (PlayerPrefs.GetInt("AnzahlDerPunkte", 0) > 10000)
+        if (sm.GetScore() > 10000)
         {
             goldKaufen.interactable = true;
         }
@@ -117,25 +127,25 @@ public class StuffManager : MonoBehaviour
         {
             goldKaufen.interactable = false;
         }
+
+        //ability
+        Abilities.SetHutBlueprint(c);
     }
 
     public void GoldKaufen()
     {
-        if (PlayerPrefs.GetInt("AnzahlDerPunkte", 0) >= 10000)
+        if (sm == null || gm == null)
+            return;
+
+        if (sm.GetScore() >= 10000)
         {
-            Debug.Log("Gold wurde gekauft");
+            sm.RemovePoint(10000);
+            sm.SaveScore();
 
-            if(sm != null)
-            {
-                sm.RemovePoint(10000);
-                sm.LoadScore();
-            }
-            //PlayerPrefs.SetInt("AnzahlDerPunkte", -10000);
-
-            if(gm != null)
-            {
-                gm.AddGold(10);
-            }
+            gm.AddGold(10);
         }
+
+        UpdateUI();
+        StuffEvents.TriggerUIChange();
     }
 }

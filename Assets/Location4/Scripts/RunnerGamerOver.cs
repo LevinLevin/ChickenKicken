@@ -1,13 +1,16 @@
+using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Cinemachine;
 
 public class RunnerGamerOver : MonoBehaviour
 {
+
+    public static RunnerGamerOver instance;
+
     //für die cameras
+    [Header("Cameras")]
     [SerializeField] CinemachineVirtualCamera BusCam;
     [SerializeField] CinemachineVirtualCamera HuhnCam;
 
@@ -26,6 +29,7 @@ public class RunnerGamerOver : MonoBehaviour
     [Header("Canvas")]
     public GameObject andereCanvas;
     public GameObject gameoverCanvas;
+    public Image ImgBlood;
 
     //das huhn muss zerstört werden
     public GameObject huhn;
@@ -36,6 +40,14 @@ public class RunnerGamerOver : MonoBehaviour
     float targetVolume = 0.4f;
     float endVolume = 0f;
 
+    public void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +55,7 @@ public class RunnerGamerOver : MonoBehaviour
         LeanTween.scale(TextMeter, new Vector3(1.04f, 1.04f, 1.04f), 1f).setEaseOutQuart().setLoopPingPong();
 
         //am anfang sollen die fehltritte 0 sein
-        PlayerPrefs.SetInt("AnzahlDerTN", 0);
+        gestolpert = 0;
 
         //die camera wird erst für gewisse sekunden auf den bus und dann auf das huhn gerichtet
         StartCoroutine(StartSequenz());
@@ -66,40 +78,47 @@ public class RunnerGamerOver : MonoBehaviour
             leben = 3;
             Debug.Log("Leben:" + leben);
         }
+
+        ImgBlood.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Stolpern()
     {
-        Debug.Log(gelaufen + " gelaufen");
-        gestolpert = PlayerPrefs.GetInt("AnzahlDerTN", 0);
+        gestolpert++;
+        if(gestolpert == leben -1) //das vorletzte leben triggert das Blut
+        {
+            ImgBlood.gameObject.SetActive(true);
+        }
+
         if (gestolpert >= leben)
         {
-            //die camera wird gewechselt
-            //CameraSwitcher.SwitchCamera(BusCam); //muss sie gar nicht mehr
+            EndGame();
+        }
+    }
 
-            //canvas muessen aktiviert und deaktiviert werden
-            andereCanvas.SetActive(false);
-            gameoverCanvas.SetActive(true);
+    public void EndGame()
+    {
+        //canvas muessen aktiviert und deaktiviert werden
+        andereCanvas.SetActive(false);
+        gameoverCanvas.SetActive(true);
 
-            //das huhn verschwindet
-            huhn.SetActive(false);
+        //das huhn verschwindet
+        huhn.SetActive(false);
 
-            //fps werden gesenkt für wenn das Spiel nicht so viel braucht
-            Application.targetFrameRate= 25;
+        //fps werden gesenkt für wenn das Spiel nicht so viel braucht
+        Application.targetFrameRate = 25;
 
-            //die Musik faded aus
-            StartCoroutine(FadeMusicOut());
+        //die Musik faded aus
+        StartCoroutine(FadeMusicOut());
 
-            //der highscore wird gesetzt
+        //der highscore wird gesetzt
 
-            txtMeter.text = "Distance: " + gelaufen.ToString();
-            hs = PlayerPrefs.GetInt("AnzahlDerMeter", 0);
-            txtHighscore.text = "Highscore: " + hs.ToString();
-            if(gelaufen > PlayerPrefs.GetInt("AnzahlDerMeter", 0))
-            {
-                PlayerPrefs.SetInt("AnzahlDerMeter", gelaufen);
-            }
+        txtMeter.text = "Distance: " + gelaufen.ToString();
+        hs = PlayerPrefs.GetInt("AnzahlDerMeter", 0);
+        txtHighscore.text = "Highscore: " + hs.ToString();
+        if (gelaufen > PlayerPrefs.GetInt("AnzahlDerMeter", 0))
+        {
+            PlayerPrefs.SetInt("AnzahlDerMeter", gelaufen);
         }
     }
 
@@ -120,16 +139,9 @@ public class RunnerGamerOver : MonoBehaviour
 
     IEnumerator StartSequenz()
     {
-        /*if(CameraSwitcher.IsActiveCamera(HuhnCam))
-        {
-            CameraSwitcher.SwitchCamera(BusCam);
-            yield return new WaitForSecondsRealtime(5f);
-            CameraSwitcher.SwitchCamera(HuhnCam);
-            Destroy(BusCam);
-        }*/
-            //das huhn wird erst nach waitforseconds sekunden vorspann gezeigt
-            yield return new WaitForSecondsRealtime(5f);
-            CameraSwitcher.SwitchCamera(HuhnCam);
+        //das huhn wird erst nach waitforseconds sekunden vorspann gezeigt
+        yield return new WaitForSecondsRealtime(5f);
+        CameraSwitcher.SwitchCamera(HuhnCam);
     }
 
     IEnumerator FadeMusicIn()

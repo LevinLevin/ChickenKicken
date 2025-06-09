@@ -510,6 +510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9018136383870399895}
   - component: {fileID: 7502538410303327313}
+  - component: {fileID: 6579614223388656019}
   m_Layer: 0
   m_Name: Spot Light (1)
   m_TagString: Untagged
@@ -594,6 +595,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &6579614223388656019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338240541805105221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &3169211630359732173
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,8 +725,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.032475524, y: 0.08177632, z: 0.043111514}
-  m_Center: {x: -0.000007886942, y: -0.00002897151, z: -0.006818528}
+  m_Size: {x: 0.023299733, y: 0.08177632, z: 0.043111514}
+  m_Center: {x: -0.0003757114, y: -0.000028971774, z: -0.006818528}
 --- !u!1 &4071731472309250201
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,8 +904,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.032475524, y: 0.08177631, z: 0.04311155}
-  m_Center: {x: -0.000007905181, y: -0.000028969873, z: -0.0068185814}
+  m_Size: {x: 0.021617502, y: 0.08177631, z: 0.04311155}
+  m_Center: {x: 0.00028234196, y: -0.000028968287, z: -0.0068185814}
 --- !u!1 &5795491307719282036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1030,7 @@ MeshRenderer:
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &7384591519674188236
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1026,7 +1047,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &7097117837799617462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,8 +1161,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.69187975}
+  m_Center: {x: 0, y: 0, z: 0.433827}
 --- !u!114 &2137992557310565621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1164,6 +1185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1676551477261082319}
   - component: {fileID: 9055510705112292421}
+  - component: {fileID: 1480733069813282228}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -1248,6 +1270,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1480733069813282228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917377974349280374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &8116466310366740609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1379,7 @@ MeshRenderer:
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &4751897521772929756
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1354,7 +1396,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &5041621798726996134
 MonoBehaviour:
   m_ObjectHideFlags: 0

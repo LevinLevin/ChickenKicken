@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinsBus : MonoBehaviour
@@ -8,18 +6,13 @@ public class CoinsBus : MonoBehaviour
 
     private void Start()
     {
-        sm = FindObjectOfType<ScoreManager>();
+        sm = ScoreManager.Instance;
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
-        if(sm != null)
-        {
-            sm.AddPoint(147);
-        }
+        sm.AddPoint(303);
 
-        //PlayerPrefs.SetInt("AnzahlDerPunkte", PlayerPrefs.GetInt("AnzahlDerPunkte", 0) + 147);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

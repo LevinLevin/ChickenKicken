@@ -6,9 +6,18 @@ public class Werbung : MonoBehaviour
 {
     public GameObject WerbeFlugzeug;
 
-    // Start is called before the first frame update
+    public GameObject[] banner;
+
     void Start()
     {
         LeanTween.moveLocalX(WerbeFlugzeug, 100, 20f);
+
+        int ran = Random.Range(0, banner.Length);
+
+        foreach(GameObject ban in banner) {
+            ban.SetActive(false);
+        }
+
+        banner[ran].gameObject.SetActive(true);
     }
 }

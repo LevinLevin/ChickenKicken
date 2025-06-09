@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
@@ -11,18 +9,17 @@ public class ShopManager : MonoBehaviour
 
     public int currentLocation = 0;
     public GameObject[] locations;
+    public GameObject[] tutorials;
 
     public LocationBlueprint[] platz;
     public Button erwerben;
     public Button start;
     public GameObject BtnStart;
     public Text kaufen;
-    public Button futter;
 
     public GameObject LoadingScreen;
     public Text loadingStatus;
 
-    // Start is called before the first frame update
     void Start()
     {
         sm= FindObjectOfType<ScoreManager>();
@@ -45,26 +42,35 @@ public class ShopManager : MonoBehaviour
             location.SetActive(false);
         }
 
-        locations[currentLocation].SetActive(true);
-    }
+        foreach (GameObject tut in tutorials)
+        {
+            tut.SetActive(false);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        locations[currentLocation].SetActive(true);
+        tutorials[currentLocation].SetActive(true);
+
         updateUI();
     }
 
-    public void nAnderes()
+    public void nAnderes(int direction)
     {
+        updateUI();
         locations[currentLocation].SetActive(false);
+        tutorials[currentLocation].SetActive(false);
 
-        currentLocation++;
+        currentLocation += direction;
         if (currentLocation == locations.Length)
         {
             currentLocation = 0;
         }
+        if (currentLocation < 0)
+        {
+            currentLocation = locations.Length -1;
+        }
 
         locations[currentLocation].SetActive(true);
+        tutorials[currentLocation].SetActive(true);
         LeanTween.scale(locations[currentLocation], new Vector3(1.05f, 1.05f, 1.05f), 0.5f).setEase(LeanTweenType.easeOutBack);
         LeanTween.scale(locations[currentLocation], new Vector3(1f, 1f, 1f), 0.7f).setDelay(0.3f).setEase(LeanTweenType.easeOutBack);
 
@@ -74,14 +80,17 @@ public class ShopManager : MonoBehaviour
         LocationBlueprint c = platz[currentLocation];
         if(!c.isUnlocked)
         {
+            updateUI();
             return;
         }
 
         PlayerPrefs.SetInt("Selected", currentLocation);
+        updateUI();
     }
 
     public void Unlock()
     {
+        updateUI();
         LocationBlueprint c = platz[currentLocation];
 
         if(c.isPlayable) 
@@ -98,20 +107,20 @@ public class ShopManager : MonoBehaviour
                 sm.RemovePoint(c.price);
             }
             PlayerPrefs.SetInt("AnzahlDerPunkte", PlayerPrefs.GetInt("AnzahlDerPunkte", 0) - c.price);
+            updateUI();
         }
+        updateUI();
     }
 
     #region Play
     public void Play()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + PlayerPrefs.GetInt("Selected", 0) + 3);
-
         StartCoroutine(LoadSceneAsync());
     }
 
     IEnumerator LoadSceneAsync()
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + PlayerPrefs.GetInt("Selected", 0) + 3);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(platz[currentLocation].SceneName);
 
         LoadingScreen.SetActive(true);
 
@@ -138,7 +147,7 @@ public class ShopManager : MonoBehaviour
         {
             erwerben.gameObject.SetActive(true);
             start.gameObject.SetActive(false);
-            kaufen.text = "PURCHASE " + c.price;
+            kaufen.text = "PURCHASE\n" + c.price;
             if (c.price < PlayerPrefs.GetInt("AnzahlDerPunkte", 0))
             {
                 erwerben.interactable = true;
@@ -148,10 +157,5 @@ public class ShopManager : MonoBehaviour
                 erwerben.interactable = false;
             }
         }
-    }
-
-    public void FutterKaufen()
-    {
-        PlayerPrefs.SetInt("AnzahlDesFutters", +15);
     }
 }

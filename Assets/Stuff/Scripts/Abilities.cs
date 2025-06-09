@@ -1,34 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Worst Script ever written
+/// </summary>
 public class Abilities : MonoBehaviour
 {
-    //shooteroutfit
-    int Sschuh = 1;
-    int Sbody = 1;
-    int Shut = 4;
-
-    //rodeo outfit
-    int Rschuh = 3;
-    int Rbody = 3;
-    int Rhut = 1;
-
-    //cross outfit
-    int Cschuh = 6;
-    int Chut = 6;
-    int Cbody = 6;
-
-    //moor outfit
-    int Mschuh = 4;
-    int Mhut = 3;
-    int Mbody = 4;
-
-    bool Rodeo1, Rodeo2, Rodeo3;
+    bool Hoop1, Hoop2, Hoop3;
     bool Kong1, Kong2, Kong3;
     bool Cross1, Cross2, Cross3;
     bool Moor1, Moor2, Moor3;
+
+    static BodyBlueprint bodyBlueprint;
+    static BootBlueprint bootBlueprint;
+    static HutBlueprint hutBlueprint;
 
     public Image BootImage, BodyImage, HutImage;
 
@@ -37,88 +22,107 @@ public class Abilities : MonoBehaviour
         BootImage.color= Color.white;
         BodyImage.color= Color.white;
         HutImage.color = Color.white;
-
-        UpdateColor();
     }
 
-    void Update()
+    private void OnEnable()
     {
-        UpdateAbility();
+        StuffEvents.OnUIChange += UpdateColor;
     }
 
+    private void OnDisable()
+    {
+        StuffEvents.OnUIChange -= UpdateColor;
+    }
+
+    public static void SetHutBlueprint(HutBlueprint hut)
+    {
+        hutBlueprint = hut;
+    }
+
+    public static void SetBodyBlueprint(BodyBlueprint body)
+    {
+        bodyBlueprint = body;
+    }
+
+    public static void SetBootBlueprint(BootBlueprint boot)
+    {
+        bootBlueprint = boot;
+    }
 
     public void UpdateColor()
     {
         //check for shooter ability
-        if (PlayerPrefs.GetInt("SelectedBody") == Sbody)
+        if (bodyBlueprint != null && bodyBlueprint.isUnlocked && bodyBlueprint.abilityGame == AbilityNames.KongGame)
         {
             FarbeWechseln(BodyImage, Color.cyan);
             Kong1 = true;
-            Rodeo1= false;
+            Hoop1= false;
             Cross1= false;
             Moor1 = false;
         }
-        else if(PlayerPrefs.GetInt("SelectedBody") == Rbody)
+        else if(bodyBlueprint != null && bodyBlueprint.isUnlocked && bodyBlueprint.abilityGame == AbilityNames.HoopGame)
         {
             FarbeWechseln(BodyImage, Color.red);
-            Rodeo1 = true;
+            Hoop1 = true;
             Kong1 = false;
             Cross1= false;
             Moor1 = false;
         }
-        else if (PlayerPrefs.GetInt("SelectedBody") == Cbody)
+        else if (bodyBlueprint != null && bodyBlueprint.isUnlocked && bodyBlueprint.abilityGame == AbilityNames.CrossGame)
         {
             FarbeWechseln(BodyImage, Color.blue);
             Cross1 = true;
             Kong1 = false;
-            Rodeo1= false;
+            Hoop1= false;
             Moor1 = false;
         }
-        else if (PlayerPrefs.GetInt("SelectedBody") == Mbody)
+        else if (bodyBlueprint != null && bodyBlueprint.isUnlocked && bodyBlueprint.abilityGame == AbilityNames.MoorGame)
         {
             FarbeWechseln(BodyImage, Color.yellow);
             Cross1 = false;
             Kong1 = false;
-            Rodeo1 = false;
+            Hoop1 = false;
             Moor1= true;
         }
         else
         {
             FarbeWechseln(BodyImage, Color.white);
             Kong1 = false;
-            Rodeo1= false;
+            Hoop1= false;
             Cross1= false;
             Moor1 = false;
         }
-        if (PlayerPrefs.GetInt("SelectedHut") == Shut)
+
+
+        if (hutBlueprint != null && hutBlueprint.isUnlocked && hutBlueprint.abilityGame == AbilityNames.KongGame)
         {
             FarbeWechseln(HutImage, Color.cyan);
             Kong2 = true;
             Cross2= false;
-            Rodeo2= false;
+            Hoop2= false;
             Moor2 = false;
         }
-        else if (PlayerPrefs.GetInt("SelectedHut") == Rhut)
+        else if (hutBlueprint != null && hutBlueprint.isUnlocked && hutBlueprint.abilityGame == AbilityNames.HoopGame)
         {
             FarbeWechseln(HutImage, Color.red);
-            Rodeo2 = true;
+            Hoop2 = true;
             Cross2= false;
             Kong2 = false;
             Moor2 = false;
         }
-        else if (PlayerPrefs.GetInt("SelectedHut") == Chut)
+        else if (hutBlueprint != null && hutBlueprint.isUnlocked && hutBlueprint.abilityGame == AbilityNames.CrossGame)
         {
             FarbeWechseln(HutImage, Color.blue);
             Cross2 = true;
-            Rodeo2= false;
+            Hoop2= false;
             Kong2 = false;
             Moor2 = false;
         }
-        else if (PlayerPrefs.GetInt("SelectedHut") == Mhut)
+        else if (hutBlueprint != null && hutBlueprint.isUnlocked && hutBlueprint.abilityGame == AbilityNames.MoorGame)
         {
             FarbeWechseln(HutImage, Color.yellow);
             Cross2 = false;
-            Rodeo2 = false;
+            Hoop2 = false;
             Kong2 = false;
             Moor2= true;
         }
@@ -126,49 +130,53 @@ public class Abilities : MonoBehaviour
         {
             FarbeWechseln(HutImage, Color.white);
             Kong2 = false;
-            Rodeo2= false;
+            Hoop2= false;
             Cross2= false;
             Moor2 = false;
         }
-        if (PlayerPrefs.GetInt("SelectedBoot") == Sschuh){
+
+
+        if (bootBlueprint != null && bootBlueprint.isUnlocked && bootBlueprint.abilityGame == AbilityNames.KongGame){
             FarbeWechseln(BootImage, Color.cyan);
             Kong3 = true;
             Cross3= false;
-            Rodeo3= false;
+            Hoop3= false;
             Moor3 = false;
         }
-        else if (PlayerPrefs.GetInt("SelectedBoot") == Rschuh)
+        else if (bootBlueprint != null && bootBlueprint.isUnlocked && bootBlueprint.abilityGame == AbilityNames.HoopGame)
         {
             FarbeWechseln(BootImage, Color.red);
-            Rodeo3 = true;
+            Hoop3 = true;
             Kong3 = false;
             Cross3= false;
             Moor3 = false;
         }
-        else if (PlayerPrefs.GetInt("SelectedBoot") == Cschuh)
+        else if (bootBlueprint != null && bootBlueprint.isUnlocked && bootBlueprint.abilityGame == AbilityNames.CrossGame)
         {
             FarbeWechseln(BootImage, Color.blue);
             Cross3 = true;
             Kong3 = false;
-            Rodeo3= false;
+            Hoop3= false;
             Moor3 = false;
         }
-        else if (PlayerPrefs.GetInt("SelectedBoot") == Mschuh)
+        else if (bootBlueprint != null && bootBlueprint.isUnlocked && bootBlueprint.abilityGame == AbilityNames.MoorGame)
         {
             FarbeWechseln(BootImage, Color.yellow);
             Cross3 = false;
             Kong3 = false;
-            Rodeo3 = false;
+            Hoop3 = false;
             Moor3= true;
         }
         else
         {
             FarbeWechseln(BootImage, Color.white);
             Kong3 = false;
-            Rodeo3= false;
+            Hoop3= false;
             Cross3= false;
             Moor3 = false;
         }
+
+        UpdateAbility();
     }
 
     public void FarbeWechseln(Image image, Color color)
@@ -188,10 +196,10 @@ public class Abilities : MonoBehaviour
             PlayerPrefs.SetInt("AbilityNumber", 2);
             Debug.Log("CrossAbility is true");
         }
-        else if (Rodeo1 && Rodeo2 && Rodeo3)
+        else if (Hoop1 && Hoop2 && Hoop3)
         {
             PlayerPrefs.SetInt("AbilityNumber", 3);
-            Debug.Log("RodeoAbility is true");
+            Debug.Log("HoopAbility is true");
         }
         else if(Moor1 && Moor2 && Moor3)
         {
@@ -203,4 +211,16 @@ public class Abilities : MonoBehaviour
             PlayerPrefs.SetInt("AbilityNumber", 0);
         }
     }
+}
+
+/// <summary>
+/// Select the type of game this item supports with an ability
+/// </summary>
+public enum AbilityNames
+{
+    None,
+    HoopGame,
+    CrossGame,
+    KongGame,
+    MoorGame
 }

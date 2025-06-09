@@ -3,7 +3,27 @@ guid: ad0eb759d81c098498eee3920e93ed6c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Buchstaben
+    second: {fileID: 2100000, guid: 1b3cf19d26d114c4da476021e11fa4e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cracks
+    second: {fileID: 2100000, guid: fd02af03cecaaa348a274ef6cdad39b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fundament
+    second: {fileID: 2100000, guid: 55ccd7e10417c024990e7142ed40d567, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grabstein Body
+    second: {fileID: 2100000, guid: 1061c1608e7f54b4e9870e338b445b26, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
