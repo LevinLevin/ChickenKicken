@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class FallDamage : MonoBehaviour
 {
-    public GameObject GameOverCanvas;
-
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
@@ -14,7 +12,7 @@ public class FallDamage : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log(other.name);
-            GameOverCanvas.SetActive(true);
+            GameOverManager.Instance.EndGame();
         }
     }
 }

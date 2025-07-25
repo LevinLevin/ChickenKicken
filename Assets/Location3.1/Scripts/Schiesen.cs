@@ -8,6 +8,7 @@ public class Schiesen : MonoBehaviour
 
     bool isShooten;
     bool stopShooten;
+    bool musicOff;
 
     //für den schies sound
     private AudioSource popSound;
@@ -18,6 +19,10 @@ public class Schiesen : MonoBehaviour
     void Start()
     {
         popSound = GetComponent<AudioSource>();
+        if (PlayerPrefs.GetInt("MusikAus", 1) == 0)
+        {
+            popSound.volume = 0;
+        }
     }
 
     private void Update()
@@ -28,11 +33,8 @@ public class Schiesen : MonoBehaviour
             //patrone wird an der stelle des huhns erstellt 
             GameObject bullet = Instantiate(BulletObject, transform.position, transform.rotation);
             //der sound wird gespielt 
-            if(PlayerPrefs.GetInt("MusikAus", 1)== 1)
-            {
-                popSound.pitch = Random.Range(1 - pitchChangeMultiplier, 1 + pitchChangeMultiplier);
-                popSound.Play();
-            }
+            popSound.pitch = Random.Range(1 - pitchChangeMultiplier, 1 + pitchChangeMultiplier);
+            popSound.Play();
             //die Patrone wird wieder Zerstört nach ca 5 sek
             Destroy(bullet, 1f);
         }
@@ -62,7 +64,7 @@ public class Schiesen : MonoBehaviour
         isShooten = false;
         if (stopShooten == false)
         {
-            Invoke("ShootenTrue", 0.2f);
+            Invoke(nameof(ShootenTrue), 0.2f);
         }
     }
 

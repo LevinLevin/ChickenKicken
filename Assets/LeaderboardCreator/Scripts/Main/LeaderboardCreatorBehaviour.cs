@@ -18,11 +18,18 @@ namespace Dan.Main
             public Entry[] entries;
         }
         
+        internal static LeaderboardCreatorConfig Config =>
+            Resources.Load<LeaderboardCreatorConfig>("LeaderboardCreatorConfig");
+
+        private static string GetError(UnityWebRequest request) =>
+            $"{request.responseCode}: {request.downloadHandler.text}";
+        
         internal void Authorize(Action<string> callback)
         {
-            if (!string.IsNullOrEmpty(PlayerPrefs.GetString(PlayerPrefsGuidKey, "")))
+            var loadedGuid = LoadGuid();
+            if (!string.IsNullOrEmpty(loadedGuid))
             {
-                callback?.Invoke(PlayerPrefs.GetString(PlayerPrefsGuidKey));
+                callback?.Invoke(loadedGuid);
                 return;
             }
             
@@ -37,7 +44,7 @@ namespace Dan.Main
                 }
 
                 var guid = request.downloadHandler.text;
-                PlayerPrefs.SetString(PlayerPrefsGuidKey, guid);
+                SaveGuid(guid);
                 callback?.Invoke(guid);
             }));
         }
@@ -46,14 +53,15 @@ namespace Dan.Main
         {
             callback += guid =>
             {
-                if (string.IsNullOrEmpty(guid)) return;
+                if (string.IsNullOrEmpty(guid))
+                    return;
                 onFinish?.Invoke();
             };
-            PlayerPrefs.DeleteKey(PlayerPrefsGuidKey);
+            DeleteGuid();
             Authorize(callback);
         }
         
-        internal void SendGetRequest(string url, Action<bool> callback = null)
+        internal void SendGetRequest(string url, Action<bool> callback, Action<string> errorCallback)
         {
             var request = UnityWebRequest.Get(url);
             StartCoroutine(HandleRequest(request, isSuccessful =>
@@ -62,6 +70,7 @@ namespace Dan.Main
                 {
                     HandleError(request);
                     callback?.Invoke(false);
+                    errorCallback?.Invoke(GetError(request));
                     return;
                 }
                 callback?.Invoke(true);
@@ -69,7 +78,24 @@ namespace Dan.Main
             }));
         }
         
-        internal void SendGetRequest(string url, Action<Entry> callback = null)
+        internal void SendGetRequest(string url, Action<int> callback, Action<string> errorCallback)
+        {
+            var request = UnityWebRequest.Get(url);
+            StartCoroutine(HandleRequest(request, isSuccessful =>
+            {
+                if (!isSuccessful)
+                {
+                    HandleError(request);
+                    callback?.Invoke(0);
+                    errorCallback?.Invoke(GetError(request));
+                    return;
+                }
+                callback?.Invoke(int.Parse(request.downloadHandler.text));
+                LeaderboardCreator.Log("Successfully retrieved leaderboard data!");
+            }));
+        }
+        
+        internal void SendGetRequest(string url, Action<Entry> callback, Action<string> errorCallback)
         {
             var request = UnityWebRequest.Get(url);
             StartCoroutine(HandleRequest(request, isSuccessful =>
@@ -78,6 +104,7 @@ namespace Dan.Main
                 {
                     HandleError(request);
                     callback?.Invoke(new Entry());
+                    errorCallback?.Invoke(GetError(request));
                     return;
                 }
                 var response = JsonUtility.FromJson<Entry>(request.downloadHandler.text);
@@ -86,7 +113,7 @@ namespace Dan.Main
             }));
         }
         
-        internal void SendGetRequest(string url, Action<Entry[]> callback = null)
+        internal void SendGetRequest(string url, Action<Entry[]> callback, Action<string> errorCallback)
         {
             var request = UnityWebRequest.Get(url);
             StartCoroutine(HandleRequest(request, isSuccessful =>
@@ -95,10 +122,10 @@ namespace Dan.Main
                 {
                     HandleError(request);
                     callback?.Invoke(Array.Empty<Entry>());
+                    errorCallback?.Invoke(GetError(request));
                     return;
                 }
-                var tmp = "{\"entries\":" + request.downloadHandler.text + "}";
-                var response = JsonUtility.FromJson<EntryResponse>(tmp);
+                var response = JsonUtility.FromJson<EntryResponse>($"{{\"entries\":{request.downloadHandler.text}}}");
                 callback?.Invoke(response.entries);
                 LeaderboardCreator.Log("Successfully retrieved leaderboard data!");
             }));
@@ -126,7 +153,7 @@ namespace Dan.Main
             if (request.responseCode != 200)
             {
                 onComplete.Invoke(false);
-                errorCallback?.Invoke(request.responseCode + ": " + request.downloadHandler.text);
+                errorCallback?.Invoke(GetError(request));
                 request.downloadHandler.Dispose();
                 request.Dispose();
                 yield break;
@@ -139,13 +166,64 @@ namespace Dan.Main
         
         private static void HandleError(UnityWebRequest request)
         {
-            var message = Enum.GetName(typeof(StatusCode), (StatusCode)request.responseCode).SplitByUppercase();
+            var message = Enum.GetName(typeof(StatusCode), (StatusCode) request.responseCode);
+            message = string.IsNullOrEmpty(message) ? "Unknown" : message.SplitByUppercase();
                 
             var downloadHandler = request.downloadHandler;
             var text = downloadHandler.text;
             if (!string.IsNullOrEmpty(text))
                 message = $"{message}: {text}";
             LeaderboardCreator.LogError(message);
+        }
+        
+        private static void SaveGuid(string guid)
+        {
+            switch (Config.authSaveMode)
+            {
+                case AuthSaveMode.PlayerPrefs:
+                    PlayerPrefs.SetString(GUID_KEY, guid);
+                    PlayerPrefs.Save();
+                    break;
+                case AuthSaveMode.PersistentDataPath:
+                    var path = System.IO.Path.Combine(Application.persistentDataPath, Config.fileName);
+                    if (string.IsNullOrEmpty(path))
+                        return;
+                    System.IO.File.WriteAllText(path, guid);
+                    break;
+            }
+            LeaderboardCreator.UserGuid = guid;
+        }
+        
+        private static string LoadGuid()
+        {
+            switch (Config.authSaveMode)
+            {
+                case AuthSaveMode.PlayerPrefs:
+                    return PlayerPrefs.GetString(GUID_KEY, "");
+                case AuthSaveMode.PersistentDataPath:
+                    var path = System.IO.Path.Combine(Application.persistentDataPath, Config.fileName);
+                    return System.IO.File.Exists(path) ? System.IO.File.ReadAllText(path) : "";
+                default:
+                    return "";
+            }
+        }
+
+        private static void DeleteGuid()
+        {
+            switch (Config.authSaveMode)
+            {
+                case AuthSaveMode.PlayerPrefs:
+                    PlayerPrefs.DeleteKey(GUID_KEY);
+                    PlayerPrefs.Save();
+                    break;
+                case AuthSaveMode.PersistentDataPath:
+                    var path = System.IO.Path.Combine(Application.persistentDataPath, Config.fileName);
+                    if (string.IsNullOrEmpty(path) || !System.IO.File.Exists(path))
+                        return;
+                    System.IO.File.Delete(path);
+                    break;
+            }
+            LeaderboardCreator.UserGuid = "";
         }
     }
 }

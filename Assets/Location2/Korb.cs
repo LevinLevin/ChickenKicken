@@ -17,10 +17,12 @@ public class Korb : MonoBehaviour
     // as long as no wall was hit we have a combo
     bool hasCombo;
     public TMP_Text comboText;
+    public TMP_Text txtHighestCombo;
     public Image comboImage;
     RectTransform imageTransform;
     float originalY;
     int comboCount;
+    int highestCombo;
 
     int gewinn = 73;
 
@@ -29,6 +31,9 @@ public class Korb : MonoBehaviour
     private void Start()
     {
         sm = FindObjectOfType<ScoreManager>();
+
+        highestCombo = PlayerPrefs.GetInt("HighestCombo", 0);
+        txtHighestCombo.text = highestCombo.ToString() + "X COMBO";
 
         if(PlayerPrefs.GetInt("AbilityNumber") == 3)
         {
@@ -74,13 +79,19 @@ public class Korb : MonoBehaviour
             comboCount++;
             ComboImageTrigger();
             comboImage.gameObject.SetActive(true);
+
+            //check for the combo is higher than the higfhest for it to be the new highscore
+            if(comboCount > highestCombo) {
+                highestCombo = comboCount;
+                txtHighestCombo.text = highestCombo.ToString() + "X COMBO";
+            }
         }
         hasCombo = true;
     }
 
     void ComboImageTrigger()
     {
-        comboText.text = comboCount.ToString() + "X\nCombo";
+        comboText.text = comboCount.ToString() + "X\nCOMBO";
 
         LeanTween.cancel(gameObject);
 
@@ -98,6 +109,9 @@ public class Korb : MonoBehaviour
         LeanTween.alpha(comboImage.rectTransform, 0f, 2f).setEase(LeanTweenType.easeInOutQuad);
     }
 
+    /// <summary>
+    /// Adss the combo to the points and sets it back to 0
+    /// </summary>
     public void ResetCombo()
     {
         hasCombo = false;
@@ -123,5 +137,10 @@ public class Korb : MonoBehaviour
         bubbles[aktuelleSprechblase].SetActive(false);
         yield return new WaitForSecondsRealtime(1f);
         einmal = false;
+    }
+
+    private void OnDisable()
+    {
+        PlayerPrefs.SetInt("HighestCombo", highestCombo);
     }
 }

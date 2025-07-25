@@ -1,93 +1,121 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
 using Dan.Main;
+using Dan.Models;
+using TMPro;
+using UnityEngine;
 
 public class Join : MonoBehaviour
 {
+    public TMP_Text[] names;
 
+    public TMP_Text[] scores;
 
-    [SerializeField]
-    private List<TextMeshProUGUI> names;
+    public TMP_Text[] hoopScores;
 
-    [SerializeField]
-    private List<TextMeshProUGUI> scores;
+    public TMP_Text[] kongScores;
 
-    [Header("Huete der Huehner")]
-    public GameObject[] hute1;
-    public GameObject[] hute2;
-    public GameObject[] hute3;
+    public TMP_Text[] crossScores;
 
-    public int[] huteIndex;
+    public TMP_Text[] moorScores;
 
-    private string publicLeaderboardKey = "cb1e15a144abd82a016662861f6d694bef1af31d2658bbfedb9389e59c03c921";
+    public TMP_Text playerRankText;
 
-    string Username;
-    int Score;
-    string HutIndex;
-
-    public void Start()
+    private void Start()
     {
-        Username = PlayerPrefs.GetString("NameDesHuhn");
-        Score = PlayerPrefs.GetInt("AnszahlDerPunkte", 0);
-        HutIndex = PlayerPrefs.GetInt("SelectedHut").ToString();
-
-        Upload(Username, Score, HutIndex);
+        UploadEntry();
     }
 
-    public void GetLeaderboard()
+    private void LoadScoreHoopEntries()
     {
-        LeaderboardCreator.GetLeaderboard(publicLeaderboardKey, ((msg) =>
+        Leaderboards.Score_Hoop.GetEntries(entries =>
         {
-            DisplayHut();
-            for (int i = 0; i < names.Count && i < msg.Length; i++)
+            foreach (var t in names)
+                t.text = "";
+
+            var length = Mathf.Min(names.Length, entries.Length);
+            for (int i = 0; i < length; i++)
             {
-                names[i].text = msg[i].Username;
-                scores[i].text = msg[i].Score.ToString();
+                names[i].text = entries[i].Username.ToString();
+                scores[i].text = entries[i].Score.ToString();
+                hoopScores[i].text = entries[i].Extra;
             }
-        }));
+        });
     }
 
-    public void Upload(string pUsername, int pScore, string pHutIndex)
+    private void LoadKongEntries()
     {
-        LeaderboardCreator.UploadNewEntry(publicLeaderboardKey, pUsername, pScore, pHutIndex, ((msg) =>
+        Leaderboards.Kong.GetEntries(entries =>
         {
-            GetLeaderboard();
-        }));
-    }
+            foreach (var t in kongScores)
+                t.text = "";
 
-    public void DisplayHut()
-    {
-        LeaderboardCreator.GetLeaderboard(publicLeaderboardKey, ((msg) =>
-        {
-            Debug.Log(msg);
-            //für jeden der ersten drei plätze wird der hutindex ermittelt und aus dem leaderboard übergeben
-            for(int i = 0; i < msg.Length; i++)
+            var length = Mathf.Min(names.Length, entries.Length);
+            for (int i = 0; i < length; i++)
             {
-                //angenommen der erste platz (msg[0]) hätte den dritten hut hute1[3],
-                //dann wird der erste string "3" als int an erster stelle des int array huteIndex[0] übergeben
-                //huteIndex[0] übergibt dann den wert an einen lokalen int hutIndex1 also wieder 3
-                //aus dem ersten array der hüte hute1, wird dann der Hut an 3. Stelle aktiviert
-                huteIndex[i] = int.Parse(msg[i].Extra);
-                Debug.Log("hut index " + huteIndex[i]);
+                kongScores[i].text = entries[i].Extra;
+                crossScores[i].text = entries[i].Username;
             }
+        });
+    }
 
-            //jedes huhn benötigt seinen eigenen Hutindex
-            int hutIndex1;
-            int hutIndex2;
-            int hutIndex3;
+    private void LoadMoorEntries()
+    {
+        Leaderboards.Moor.GetEntries(entries =>
+        {
+            foreach (var t in moorScores)
+                t.text = "";
 
-            //der hut index wird dann auf den übergebenen String aus dem leaderboard gesetzt
-            hutIndex1 = huteIndex[0];
-            hutIndex2 = huteIndex[1];
-            hutIndex3 = huteIndex[2];
-            Debug.Log("hutIndex1: " + hutIndex1);
+            var length = Mathf.Min(names.Length, entries.Length);
+            for (int i = 0; i < length; i++)
+            {
+                moorScores[i].text = entries[i].Username;
+            }
+        });
+    }
 
-            //dann wird der hut index benutzt um im Gameobject array den richtigen hut zu aktivieren
-            hute1[hutIndex1].SetActive(true);
-            hute2[hutIndex2].SetActive(true);
-            hute3[hutIndex3].SetActive(true);
-        }));
+    public void UploadEntry()
+    {
+        Leaderboards.Score_Hoop.UploadNewEntry(PlayerPrefs.GetString("NameDesHuhn",""), PlayerPrefs.GetInt("AnzahlDerPunkte",0), PlayerPrefs.GetInt("HighestCombo", 0).ToString(), isSuccessful =>
+        {
+            if (isSuccessful)
+            {
+                LoadScoreHoopEntries();
+                ShowPlayerRank();
+            }
+        });
+        Leaderboards.Kong.UploadNewEntry(PlayerPrefs.GetInt("AnzahlDerMeter", 0).ToString(), PlayerPrefs.GetInt("AnzahlDerPunkte", 0), PlayerPrefs.GetInt("HighscoreFZ", 0).ToString(), isSuccessful =>
+        {
+            if (isSuccessful)
+                LoadKongEntries();
+        });
+        Leaderboards.Moor.UploadNewEntry(PlayerPrefs.GetInt("HighestLevel", 0).ToString(), PlayerPrefs.GetInt("AnzahlDerPunkte", 0),  isSuccessful =>
+        {
+            if (isSuccessful)
+                LoadMoorEntries();
+        });
+    }
+
+    private void ShowPlayerRank()
+    {
+        Leaderboards.Score_Hoop.GetPersonalEntry(OnPersonalEntryLoaded, OnError);
+    }
+    private void OnPersonalEntryLoaded(Entry playerEntry)
+    {
+        if (playerEntry.Rank > 0)
+        {
+            string rankSuffix = playerEntry.RankSuffix(); // e.g., "1st", "2nd"
+            playerRankText.text = $"Your Rank: {rankSuffix}\nScore: {playerEntry.Score}";
+            playerRankText.color = Color.green;
+        }
+        else
+        {
+            playerRankText.text = "You are not ranked yet.";
+            playerRankText.color = Color.white;
+        }
+    }
+    private void OnError(string error)
+    {
+        Debug.LogError($"Error fetching personal entry: {error}");
+        playerRankText.text = "Could not load your rank.";
+        playerRankText.color = Color.red;
     }
 }

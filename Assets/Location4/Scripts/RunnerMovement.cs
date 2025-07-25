@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RunnerMovement : MonoBehaviour
 {
+    public LayerMask groundLayer;
+
     private int desiredLane = 1; //ein integer für jede linie 0 für links, 1 für mitte, usw
     public float laneDistance = 4; //die distanz zwischen den linien
 
@@ -91,6 +93,7 @@ public class RunnerMovement : MonoBehaviour
     }
     public bool isGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, distToGround);
+        return Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, distToGround, groundLayer);
+        //return Physics.Raycast(transform.position, Vector3.down, distToGround);
     }
 }

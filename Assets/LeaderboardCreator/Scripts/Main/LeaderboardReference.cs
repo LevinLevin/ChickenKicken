@@ -11,16 +11,27 @@ namespace Dan.Main
 
         public void UploadNewEntry(string username, int score, Action<bool> callback = null, Action<string> errorCallback = null) => 
             LeaderboardCreator.UploadNewEntry(PublicKey, username, score, callback, errorCallback);
+        
+        public void UploadNewEntry(string username, int score, string extraData, Action<bool> callback = null, Action<string> errorCallback = null) => 
+            LeaderboardCreator.UploadNewEntry(PublicKey, username, score, extraData, callback, errorCallback);
 
-        public void GetEntries(Action<Entry[]> callback) => LeaderboardCreator.GetLeaderboard(PublicKey, callback);
+        public void GetEntries(Action<Entry[]> callback, Action<string> errorCallback = null) => 
+            LeaderboardCreator.GetLeaderboard(PublicKey, callback, errorCallback);
         
-        public void GetEntries(LeaderboardSearchQuery query, Action<Entry[]> callback) => 
-            LeaderboardCreator.GetLeaderboard(PublicKey, query, callback);
+        public void GetEntries(bool isAscending, Action<Entry[]> callback, Action<string> errorCallback = null) => 
+            LeaderboardCreator.GetLeaderboard(PublicKey, isAscending, callback, errorCallback);
         
-        public void GetPersonalEntry(Action<Entry> callback) => LeaderboardCreator.GetPersonalEntry(PublicKey, callback);
+        public void GetEntries(LeaderboardSearchQuery query, Action<Entry[]> callback, Action<string> errorCallback = null) => 
+            LeaderboardCreator.GetLeaderboard(PublicKey, query, callback, errorCallback);
         
-        public void UpdateEntryUsername(string username, Action<bool> callback = null, Action<string> errorCallback = null) => 
-            LeaderboardCreator.UpdateEntryUsername(PublicKey, username, callback, errorCallback);
+        public void GetEntries(bool isAscending, LeaderboardSearchQuery query, Action<Entry[]> callback, Action<string> errorCallback = null) =>
+            LeaderboardCreator.GetLeaderboard(PublicKey, isAscending, query, callback, errorCallback);
+        
+        public void GetPersonalEntry(Action<Entry> callback, Action<string> errorCallback = null) => 
+            LeaderboardCreator.GetPersonalEntry(PublicKey, callback, errorCallback);
+        
+        public void GetEntryCount(Action<int> callback, Action<string> errorCallback = null) => 
+            LeaderboardCreator.GetEntryCount(PublicKey, callback, errorCallback);
         
         public void DeleteEntry(Action<bool> callback = null, Action<string> errorCallback = null) => 
             LeaderboardCreator.DeleteEntry(PublicKey, callback, errorCallback);

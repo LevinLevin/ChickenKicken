@@ -9,6 +9,8 @@ public class namenbestatigen : MonoBehaviour
     public GameObject NameEingabeFeld;
     public GameObject RestlicheCanvas;
 
+    public NameHuhn nameHuhn;
+
     public void Awake()
     {
         Name.text = PlayerPrefs.GetString("NameDesHuhn");
@@ -33,5 +35,6 @@ public class namenbestatigen : MonoBehaviour
         NameEingabeFeld.SetActive(false);
         RestlicheCanvas.SetActive(true);
 
+        nameHuhn.UpdateName();
     }
 }

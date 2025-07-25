@@ -9,6 +9,7 @@
         Upload,
         UpdateUsername,
         DeleteEntry,
-        GetPersonalEntry
+        GetPersonalEntry,
+        GetEntryCount
     }
 }

@@ -96,9 +96,9 @@ public class ShooterLife : MonoBehaviour
         LeanTween.scale(txtLevel.gameObject, new Vector3(1.04f, 1.04f, 1.04f), 1f).setEaseOutQuart().setLoopPingPong();
 
         score = PlayerPrefs.GetInt("Level", 0);
-        txtLevel.text = "Level: " + score.ToString();
+        txtLevel.text = "Wave: " + score.ToString();
         highscore = PlayerPrefs.GetInt("HighestLevel", 0);
-        txtHighscore.text = "Highest Level: " + highscore.ToString();
+        txtHighscore.text = "Highest Wave: " + highscore.ToString();
     }
 
     /// <summary>
@@ -112,11 +112,15 @@ public class ShooterLife : MonoBehaviour
     }
 
     /// <summary>
-    /// Restores the health of the chicken
+    /// Restores one health of the chicken
     /// </summary>
     public void SetLeben()
     {
-        leben = 3;
+        if(leben == 3)
+        {
+            return;
+        }
+        leben += 1;
         bloodImage.gameObject.SetActive(false);
         UpdateLifeUI();
     }

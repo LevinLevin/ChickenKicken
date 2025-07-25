@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private FixedJoystick joystick;
-    [SerializeField] private Animator anime;
 
     [SerializeField] private float moveSpeed;
 

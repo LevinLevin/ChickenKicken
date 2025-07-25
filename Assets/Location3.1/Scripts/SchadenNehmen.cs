@@ -5,11 +5,8 @@ public class SchadenNehmen : MonoBehaviour
 {
     public static SchadenNehmen instance;
 
-    //schaltet die GameOver Canvas an 
-    public GameObject GameOverCanvas;
-
     //macht nen sound
-    public AudioSource huhnSound;
+    private AudioSource huhnSound;
 
     //for life indicator
     public Image ImgBlood;
@@ -41,7 +38,7 @@ public class SchadenNehmen : MonoBehaviour
 
         if (leben <= 0)
         {
-            GameOverCanvas.SetActive(true);
+            GameOverManager.Instance.EndGame();
             ImgBlood.gameObject.SetActive(false);
             return;
         }

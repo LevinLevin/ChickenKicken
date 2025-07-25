@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameOverManager : MonoBehaviour
 {
+    public static GameOverManager Instance;
+
     //um die Flugzeuge anzuzeigen, die man getroffen hat
     public Text FZgetroffen;
     public GameObject FZGetroffen;
-    public static int anzahl;
 
     public Text Highscore;
     public static int highscore;
@@ -19,39 +21,49 @@ public class GameOverManager : MonoBehaviour
     //um das huhn zu deaktivieren
     public GameObject huhn;
 
+    public TMP_Text txtCurrentFZ;
+    private int scoreFZ;
+
+    //schaltet die GameOver Canvas an 
+    public GameObject GameOverCanvas;
+
     // Start is called before the first frame update
     void Awake()
     {
-        anzahl = PlayerPrefs.GetInt("AnzahlDerFZ", 0);
+        if(Instance == null)
+            Instance = this;
+
         highscore = PlayerPrefs.GetInt("HighscoreFZ", 0);
     }
 
     private void Start()
     {
-        FZgetroffen.text = "Hit Turboprops: " +anzahl.ToString();
         //Eine Animation für den text, der im GameOver Screen die getroffenen Flugzeuge anzeigt
         LeanTween.scale(FZGetroffen, new Vector3(1.04f, 1.04f, 1.04f), 1f).setEaseOutQuart().setLoopPingPong();
 
-        Highscore.text = "Highscore: " + highscore.ToString();
+        txtCurrentFZ.text = scoreFZ.ToString() + " Turboprops";
         //die andere canvas wird ausgeschaltet
-        Buttons.SetActive(false);
-        //das huhn wird deaktiviert 
-        huhn.SetActive(false);
+        Buttons.SetActive(true);
 
         //fps werden gesenkt für wenn das Spiel nicht so viel braucht
-        Application.targetFrameRate = 25;
+        Application.targetFrameRate = 0;
     }
 
     // Update is called once per frame
-    void Update()
+    public void EndGame()
     {
+        Application.targetFrameRate = 25;
+
+        Buttons.SetActive(false);
+        huhn.SetActive(false);
+
         //die gespeicherte anzahl der abgeschossenen Flugzeuge wird in den Text eingefügt
-        FZgetroffen.text = "Hit Turboprops: " + PlayerPrefs.GetInt("AnzahlDerFZ", 0);
+        FZgetroffen.text = "Hit Turboprops: " + scoreFZ;
         /*der vorher highscore ist das selbe wie die anzahl der flugzeuge und wird später als vergleichswert genutzt
          * sollte der vorher highscore jetzt groesser sein als der highscore, wird der heighscore durch den vorher
          * highscore ersetzt
          */
-        vorherHighscore = PlayerPrefs.GetInt("AnzahlDerFZ", 0);
+        vorherHighscore = scoreFZ;
         if (vorherHighscore > PlayerPrefs.GetInt("HighscoreFZ", 0))
         {
             PlayerPrefs.SetInt("HighscoreFZ", vorherHighscore);
@@ -59,18 +71,21 @@ public class GameOverManager : MonoBehaviour
         }
         //der highscore wird angezeigt
         Highscore.text = "Highscore: " + highscore.ToString();
+        GameOverCanvas.SetActive(true);
+
     }
 
     public void Restart()
     {
         //DIe Anzahl der Flugzeuge wird zurückgesetzt
-        PlayerPrefs.SetInt("AnzahlDerFZ", 0);
+        scoreFZ = 0;
         //Die Szene wird neu geladen
         SceneManager.LoadScene("Location3.1");
     }
 
-    public void OnDestroy()
+    public void AddFlugzeug()
     {
-        PlayerPrefs.SetInt("AnzahlDerFZ", 0);
+        scoreFZ++;
+        txtCurrentFZ.text = scoreFZ.ToString() + " Turboprops";
     }
 }

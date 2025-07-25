@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 485935974961259456}
   - component: {fileID: 6463406176470157808}
   - component: {fileID: 7430778668928086103}
-  - component: {fileID: 5344366015021182028}
-  m_Layer: 0
+  - component: {fileID: 5846358819698297442}
+  m_Layer: 8
   m_Name: Boden 1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,8 +85,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5344366015021182028
-MeshCollider:
+--- !u!65 &5846358819698297442
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -95,10 +95,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7931960005988913941, guid: 72cb5ce9c6490ac4285ebcd85c0058b1, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.0114019895, y: 0.035995733, z: 0.0005479935}
+  m_Center: {x: -0.024611756, y: 0.0027166416, z: -0.0048983158}
 --- !u!1 &2429906364068977290
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6477758524802607161}
   - component: {fileID: 2265331982451211182}
+  - component: {fileID: 3661043802889779535}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -225,6 +225,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &3661043802889779535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2683918552739947006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &2765773981244314214
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +257,7 @@ GameObject:
   - component: {fileID: 6663788292081085857}
   - component: {fileID: 3874021013971484422}
   - component: {fileID: 2100824752389649439}
-  - component: {fileID: 1805381400902310134}
+  - component: {fileID: 5394425142751117700}
   m_Layer: 0
   m_Name: Skateboard 1.2
   m_TagString: Untagged
@@ -324,8 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa952c6f09d3a046837f4a40382d99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &1805381400902310134
-MeshCollider:
+--- !u!65 &5394425142751117700
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -334,10 +354,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5058536060674849927, guid: 920a75338f572cc4594eae0c3e45cba9, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.032475524, y: 0.08177631, z: 0.04311156}
+  m_Center: {x: -0.000007887304, y: -0.000028963972, z: -0.006818724}
 --- !u!1 &5085555136110961009
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +369,7 @@ GameObject:
   - component: {fileID: 8824678445233599598}
   - component: {fileID: 6742866123498258596}
   - component: {fileID: 4240525730301868408}
-  - component: {fileID: 7182370709267157229}
+  - component: {fileID: 6115006289452998921}
   m_Layer: 0
   m_Name: Skateboard 1.1
   m_TagString: Untagged
@@ -437,8 +456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa952c6f09d3a046837f4a40382d99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &7182370709267157229
-MeshCollider:
+--- !u!65 &6115006289452998921
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -447,10 +466,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5058536060674849927, guid: 920a75338f572cc4594eae0c3e45cba9, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.03247552, y: 0.081776306, z: 0.037515726}
+  m_Center: {x: -0.000007897778, y: -0.000028978671, z: -0.009616452}
 --- !u!1 &5094916893026573936
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,6 +479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5712515908840570743}
   - component: {fileID: 1215607986318440112}
+  - component: {fileID: 6451027017141186682}
   m_Layer: 0
   m_Name: Spot Light (1)
   m_TagString: Untagged
@@ -545,6 +564,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &6451027017141186682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5094916893026573936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &5598742708861342306
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +594,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5114235915833526488}
   - component: {fileID: 1460729897525028873}
-  - component: {fileID: 2680804936337444225}
   m_Layer: 0
   m_Name: Bus1
   m_TagString: Untagged
@@ -600,22 +638,6 @@ MonoBehaviour:
   Skateboard2: {fileID: 2765773981244314214}
   Coin: {fileID: 8649000884695326049}
   Coin2: {fileID: 2429906364068977290}
---- !u!54 &2680804936337444225
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5598742708861342306}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 0
 --- !u!1 &6388541011379173077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,8 +1217,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin1 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6200568145229025922, guid: 960da3e1f4f44d3429e91be8ce8d96aa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 960da3e1f4f44d3429e91be8ce8d96aa, type: 3}
+--- !u!1 &4550160957063678158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 36430394245237498, guid: 960da3e1f4f44d3429e91be8ce8d96aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 4585796954023395892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6751691424702027320
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4550160957063678158}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.019999998, z: 0.0021263363}
+  m_Center: {x: 0.0000021997837, y: 0.0000076005226, z: 3.459706e-18}
 --- !u!4 &4562174504061076738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 68714538685794102, guid: 960da3e1f4f44d3429e91be8ce8d96aa,
@@ -1278,8 +1320,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5335625797684391324}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1205064486957312855
-MeshCollider:
+--- !u!65 &7808833047515656614
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1288,13 +1330,12 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5216581434543980006, guid: 0a46fd9d5ac219848b80e8387b7ec200, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.019999998, z: 0.0021263363}
+  m_Center: {x: 0.0000021997837, y: 0.000007607973, z: 3.459706e-18}
 --- !u!95 &8058845236314328305
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1311,7 +1352,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &5814894096025130540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,8 +1438,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6200568145229025922, guid: 960da3e1f4f44d3429e91be8ce8d96aa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 960da3e1f4f44d3429e91be8ce8d96aa, type: 3}
+--- !u!1 &6665562481242863907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 36430394245237498, guid: 960da3e1f4f44d3429e91be8ce8d96aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 6629782999089361881}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1377461811806665019
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6665562481242863907}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.019999998, z: 0.0021263363}
+  m_Center: {x: 0.0000021997837, y: 0.000007607973, z: 2.842517e-14}
 --- !u!4 &6698443642243167471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 68714538685794102, guid: 960da3e1f4f44d3429e91be8ce8d96aa,

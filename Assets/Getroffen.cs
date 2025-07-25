@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Getroffen : MonoBehaviour, IPooledObject
@@ -8,7 +6,7 @@ public class Getroffen : MonoBehaviour, IPooledObject
     public LayerMask PatroneL;
 
     //für die sounds
-    public AudioSource explosionSound;
+    private AudioSource explosionSound;
 
     //für die particles
     public ParticleSystem Particle;
@@ -17,6 +15,8 @@ public class Getroffen : MonoBehaviour, IPooledObject
     //für die GameOver Canvas
     bool getroffen = false;
     bool einmal = true;
+
+    bool isMusicOn;
 
     ScoreManager sm;
 
@@ -30,6 +30,12 @@ public class Getroffen : MonoBehaviour, IPooledObject
     {
         sm = FindObjectOfType<ScoreManager>();
 
+        if (PlayerPrefs.GetInt("MusikAus", 1) == 0)
+        {
+            explosionSound.volume = 0;
+        }
+
+
         explosionSound = GetComponent<AudioSource>();
     }
 
@@ -37,7 +43,7 @@ public class Getroffen : MonoBehaviour, IPooledObject
     {
         if (getroffen == true && einmal == true)
         {
-            PlayerPrefs.SetInt("AnzahlDerFZ", PlayerPrefs.GetInt("AnzahlDerFZ", 0) + 1);
+            GameOverManager.Instance.AddFlugzeug();
             getroffen = false;
             einmal = false;
         }
@@ -51,10 +57,7 @@ public class Getroffen : MonoBehaviour, IPooledObject
             getroffen = true;
             Kaboom();
             //der sound wird gespielt 
-            if (PlayerPrefs.GetInt("MusikAus", 1) == 1)
-            {
-                explosionSound.Play();
-            }
+            explosionSound.Play();
 
             //punkte werden addiert
             //PlayerPrefs.SetInt("AnzahlDerPunkte", PlayerPrefs.GetInt("AnzahlDerPunkte", 0) + 33);
@@ -67,15 +70,10 @@ public class Getroffen : MonoBehaviour, IPooledObject
 
     public void Kaboom()
     {
-
-        //particles
         var em = Particle.emission;
-        //var dur = Particle.duration;
 
         em.enabled = true;
         Particle.Play();
-        //Particle.Stop();
-        //em.enabled = false;
 
         once = false;
     }

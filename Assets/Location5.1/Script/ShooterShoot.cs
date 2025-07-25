@@ -99,7 +99,7 @@ public class ShooterShoot : MonoBehaviour
     /// </summary>
     public void RefillMunition()
     {
-        munition = 20;
+        munition += 20;
         UpdateAmmoUI();
     }
 

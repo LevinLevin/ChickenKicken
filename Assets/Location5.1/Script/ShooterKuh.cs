@@ -9,6 +9,8 @@ public class ShooterKuh : MonoBehaviour
     public bool ready;
     int readyCount;
 
+    int preGun;
+
     Transform kuhTransform = null;
     Vector3 targetPosition = Vector3.zero;
 
@@ -43,6 +45,9 @@ public class ShooterKuh : MonoBehaviour
     [SerializeField] ShooterLife huhnLife;
     [SerializeField] ShooterShoot huhnShoot;
 
+    [Header("Bubble")]
+    [SerializeField] GameObject Bubble;
+
     private void Awake()
     {
         if(Instance == null)
@@ -53,9 +58,10 @@ public class ShooterKuh : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
+
         if (PlayerPrefs.GetInt("MusikAus", 1) == 1)
         {
-            //musik an
             MusicPlayer.clip = MainTheme;
             MusicPlayer.Play();
         }
@@ -74,6 +80,7 @@ public class ShooterKuh : MonoBehaviour
         readyCount = 0;
         kuhTransform = transform;
 
+        Bubble.SetActive(false);
 
         //Diese Zeile muss deaktiviert werden, wenn demo version raus ist
         //Endgame();
@@ -94,6 +101,9 @@ public class ShooterKuh : MonoBehaviour
 
         // Move the kuh to the target position
         kuhTransform.position = targetPosition;
+
+        Bubble.SetActive(true);
+        LeanTween.scale(Bubble, new Vector2(1.02f, 1.02f), 0.5f).setLoopPingPong();
 
         //wurfspeed ist hoeher
         if(level == 2)
@@ -119,7 +129,6 @@ public class ShooterKuh : MonoBehaviour
         MusicPlayer.volume -= 0.05f;
         MusicPlayer.Play();
 
-        Debug.Log("Endgame ist beendet");
         //das level wird nach jeder runde erhöht um einen score zu berechnen
         level += iLevel;
         PlayerPrefs.SetInt("Level", level);
@@ -135,6 +144,8 @@ public class ShooterKuh : MonoBehaviour
 
         // Move the kuh to the target position
         kuhTransform.position = targetPosition;
+
+        Bubble.SetActive(false);
 
         ShowUpgradeWindow();
 
@@ -177,7 +188,6 @@ public class ShooterKuh : MonoBehaviour
 
         if (readyCount == 4)
         {
-            Debug.Log("Jetzt kommt der Endboss");
             Endgame();
         }
     }
@@ -216,6 +226,14 @@ public class ShooterKuh : MonoBehaviour
 
         Rollen();
 
+        yield return new WaitForSecondsRealtime(wurfSpeed);
+
+        Rollen();
+
+        yield return new WaitForSecondsRealtime(wurfSpeed);
+
+        Rollen();
+
         yield return new WaitForSecondsRealtime(3);
 
         EndTheEndgame(1);
@@ -223,7 +241,15 @@ public class ShooterKuh : MonoBehaviour
 
     void Rollen()
     {
-        gunPicker = Random.Range(1, 4);
+        int newGun;
+
+        do
+        {
+            newGun = Random.Range(1, 4);
+        } while (newGun == preGun);
+
+        gunPicker = newGun;
+        preGun = newGun;
 
         switch (gunPicker)
         {
@@ -261,5 +287,10 @@ public class ShooterKuh : MonoBehaviour
                 break;
 
         }
+    }
+
+    private void OnDisable()
+    {
+        Time.timeScale = 1f;
     }
 }

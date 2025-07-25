@@ -27,8 +27,10 @@ namespace LeaderboardCreatorEditor
         {
             public List<SavedLeaderboard> leaderboards;
         }
-        
-        private const string SAVED_LEADERBOARDS_KEY = "LEADERBOARD_CREATOR___SAVED_LEADERBOARDS";
+
+        private const string ITCH_PAGE_URL = "https://danqzq.itch.io/leaderboard-creator";
+        private const string AUTHOR_URL = "https://www.danqzq.games";
+        private const string VERSION = "2.8";
 
         private static bool _isAddLeaderboardMenuOpen;
         private static string _name, _publicKey, _secretKey;
@@ -37,6 +39,8 @@ namespace LeaderboardCreatorEditor
         private static SavedLeaderboardList _savedLeaderboardList;
 
         private static GUIStyle _titleStyle;
+        
+        private static int _menuOpened;
         
         private static LeaderboardCreatorConfig Config => Resources.Load<LeaderboardCreatorConfig>("LeaderboardCreatorConfig");
 
@@ -47,6 +51,33 @@ namespace LeaderboardCreatorEditor
             window.minSize = new Vector2(400, 475);
             window.titleContent = new GUIContent("Leaderboard Creator");
             window.Show();
+
+            CheckVersion();
+        }
+
+        private static void CheckVersion()
+        {
+            var request = UnityEngine.Networking.UnityWebRequest.Get("https://lcv2-server.danqzq.games/version");
+            var operation = request.SendWebRequest();
+            Log("Checking for updates...");
+            operation.completed += _ =>
+            {
+                if (request.responseCode != 200) return;
+                var response = request.downloadHandler.text;
+                if (response == VERSION)
+                {
+                    Log("<color=green><b>Leaderboard Creator is up to date!</b></color>");
+                    return;
+                }
+                
+                Log("<color=red><b>There is a new version of Leaderboard Creator available!</b></color>");
+                
+                var dialog = EditorUtility.DisplayDialog("Leaderboard Creator", 
+                    "There is a new version of Leaderboard Creator available. Download it now?", "Yes", "No");
+                if (!dialog) return;
+                
+                Application.OpenURL(ITCH_PAGE_URL);
+            };
         }
 
         private void OnBecameVisible()
@@ -90,6 +121,29 @@ namespace LeaderboardCreatorEditor
 
         private void OnGUI()
         {
+            _menuOpened = GUILayout.Toolbar(_menuOpened, new[] {"My Leaderboards", "Settings"});
+
+            switch (_menuOpened)
+            {
+                case 0:
+                    OnMyLeaderboardsGUI();
+                    break;
+                case 1:
+                    OnSettingsGUI();
+                    break;
+            }
+            
+            DrawSeparator();
+            
+            if (GUILayout.Button("<color=#2a9df4>Made by @danqzq</color>",
+                    new GUIStyle{alignment = TextAnchor.LowerRight, richText = true}))
+                Application.OpenURL(AUTHOR_URL);
+            
+            GUILayout.Label($"<color=white>v{VERSION}</color>", new GUIStyle{alignment = TextAnchor.LowerRight});
+        }
+
+        private void OnMyLeaderboardsGUI()
+        {
             DisplayLeaderboardsMenu();
 
             if (!_isAddLeaderboardMenuOpen && GUILayout.Button("Enter New Leaderboard"))
@@ -101,13 +155,38 @@ namespace LeaderboardCreatorEditor
                 SaveLeaderboardsToScript();
 
             if (GUILayout.Button("Manage Leaderboards"))
-                Application.OpenURL("https://danqzq.itch.io/leaderboard-creator");
+                Application.OpenURL(ITCH_PAGE_URL);
+        }
 
-            DrawSeparator();
+        private void OnSettingsGUI()
+        {
+            GUILayout.Space(10);
+            GUILayout.Label("Settings", _titleStyle);
+            GUILayout.Space(10);
             
-            if (GUILayout.Button("<color=#2a9df4>Made by @danqzq</color>",
-                    new GUIStyle{alignment = TextAnchor.LowerRight, richText = true}))
-                Application.OpenURL("https://www.danqzq.games");
+            var oldAuthSaveMode = Config.authSaveMode;
+            Config.authSaveMode = (AuthSaveMode) EditorGUILayout.EnumPopup("Authorization Save Mode", Config.authSaveMode);
+            if (oldAuthSaveMode != Config.authSaveMode)
+                EditorUtility.SetDirty(Config);
+            
+            if (Config.authSaveMode == AuthSaveMode.PersistentDataPath)
+            {
+                var oldFileName = Config.fileName;
+                Config.fileName = EditorGUILayout.TextField("File Name", Config.fileName);
+                if (Config.fileName.Contains("/")) 
+                    Config.fileName = Config.fileName.Replace("/", "");
+                if (oldFileName != Config.fileName)
+                    EditorUtility.SetDirty(Config);
+                if (Application.platform == RuntimePlatform.WebGLPlayer)
+                    EditorGUILayout.HelpBox("Saving to persistent data path may not work on WebGL builds.", MessageType.Warning);
+            }
+            
+            GUILayout.Space(20);
+            
+            var oldIsUpdateLogsEnabled = Config.isUpdateLogsEnabled;
+            Config.isUpdateLogsEnabled = GUILayout.Toggle(Config.isUpdateLogsEnabled, "Enable Update Logs");
+            if (oldIsUpdateLogsEnabled != Config.isUpdateLogsEnabled)
+                EditorUtility.SetDirty(Config);
         }
 
         private static void DrawSeparator()
@@ -122,9 +201,6 @@ namespace LeaderboardCreatorEditor
 
         private static void DisplayLeaderboardsMenu()
         {
-            GUILayout.Space(10);
-            GUILayout.Label("My Leaderboards", _titleStyle);
-            
             if (_savedLeaderboardList.leaderboards.Count == 0)
             {
                 GUILayout.Label("You don't have any saved leaderboards.");
@@ -245,6 +321,12 @@ namespace LeaderboardCreatorEditor
             file.WriteLine("}");
             file.Close();
             AssetDatabase.Refresh();
+        }
+        
+        private static void Log(string message)
+        {
+            if (!Config.isUpdateLogsEnabled) return;
+            Debug.Log($"[Leaderboard Creator] {message}");
         }
     }
 }

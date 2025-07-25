@@ -61,7 +61,6 @@ public class ShooterSchafe : MonoBehaviour
         if(PlayerPrefs.GetInt("AbilityNumber", 0) == 4)
         {
             schafLeben = 7;
-            Debug.Log("Schaden auf 10 minimiert");
         }
         else
         {
@@ -129,7 +128,7 @@ public class ShooterSchafe : MonoBehaviour
             versteckt= true;
             shooten = false;
         }
-        time = Random.Range(3.0f, 7.0f);
+        time = Random.Range(3.0f, 6.0f);
         Invoke(nameof(hervorkommen), time);
     }
 
@@ -148,7 +147,7 @@ public class ShooterSchafe : MonoBehaviour
 
             versteckt = false;
         }
-        time = Random.Range(2.0f, 5.0f);
+        time = Random.Range(2.0f, 4.0f);
         Invoke(nameof(Verstecken), time);
     }
 
@@ -168,7 +167,6 @@ public class ShooterSchafe : MonoBehaviour
         if (PlayerPrefs.GetInt("AbilityNumber", 0) == 4)
         {
             schafLeben = 7;
-            Debug.Log("Schaden auf 10 minimiert");
         }
         else
         {

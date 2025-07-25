@@ -22,14 +22,24 @@ public class Bus : MonoBehaviour, IPooledObject
         Coin.SetActive(false);
         Coin2.SetActive(false);
 
-        rb = this.GetComponent<Rigidbody>();
-        rb.velocity = new Vector3(0, 0, -speed);
+        //rb = this.GetComponent<Rigidbody>();
+        //rb.velocity = new Vector3(0, 0, -speed);
         Entscheide();
     }
 
-    private void Update()
+    //private void Update()
+    //{
+    //    if(transform.position.z < -25f)
+    //    {
+    //        gameObject.SetActive(false);
+    //    }
+    //}
+
+    void Update()
     {
-        if(transform.position.z < -25f)
+        transform.Translate(Vector3.back * speed * Time.deltaTime);
+
+        if (transform.position.z < -25f)
         {
             gameObject.SetActive(false);
         }

@@ -119,7 +119,7 @@ public class StuffManager : MonoBehaviour
         }
 
         //gold kaufen möglich oder nicht
-        if (sm.GetScore() > 10000)
+        if (sm.GetScore() > 7500)
         {
             goldKaufen.interactable = true;
         }
@@ -137,9 +137,9 @@ public class StuffManager : MonoBehaviour
         if (sm == null || gm == null)
             return;
 
-        if (sm.GetScore() >= 10000)
+        if (sm.GetScore() >= 7500)
         {
-            sm.RemovePoint(10000);
+            sm.RemovePoint(7500);
             sm.SaveScore();
 
             gm.AddGold(10);

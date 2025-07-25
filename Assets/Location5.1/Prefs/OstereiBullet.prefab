@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4483299795079562296}
   - component: {fileID: 4483299795079562279}
   m_Layer: 0
-  m_Name: Osterei
+  m_Name: OstereiBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
