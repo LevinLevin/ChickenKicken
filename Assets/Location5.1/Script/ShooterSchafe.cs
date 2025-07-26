@@ -96,7 +96,7 @@ public class ShooterSchafe : MonoBehaviour
                 LeanTween.scale(txtPunkte, new Vector3(1f, 1f, 1f), 0.3f).setDelay(0.3f).setEase(LeanTweenType.easeOutBack);
                 sM.AddPoint(57);
                 schafLeben--;
-                //schaden muss mit Stufe erreicht werden, um kuh zu beschwören
+                //schaden muss mit Stufe erreicht werden, um kuh zu beschwï¿½ren
                 if (schafLeben <= 0)
                 {
                     ready = true;
@@ -158,7 +158,7 @@ public class ShooterSchafe : MonoBehaviour
 
         // Add force to the bullet
         Rigidbody bulletRB = bullet.GetComponent<Rigidbody>();
-        bulletRB.velocity = Vector3.zero;
+        bulletRB.linearVelocity = Vector3.zero;
         bulletRB.AddForce(-gun.right * bulletSpeed, ForceMode.Impulse);
     }
 

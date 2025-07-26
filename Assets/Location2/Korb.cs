@@ -30,7 +30,7 @@ public class Korb : MonoBehaviour
 
     private void Start()
     {
-        sm = FindObjectOfType<ScoreManager>();
+        sm = ScoreManager.Instance;
 
         highestCombo = PlayerPrefs.GetInt("HighestCombo", 0);
         txtHighestCombo.text = highestCombo.ToString() + "X COMBO";
@@ -102,7 +102,7 @@ public class Korb : MonoBehaviour
         comboImage.color = new Color(comboImage.color.r, comboImage.color.g, comboImage.color.b, 1);
 
         // Zielposition festlegen (nach oben aus dem Bild)
-        float targetY = imageTransform.anchoredPosition.y + 200; // Passe den Wert an je nach Bedarf
+        float targetY = imageTransform.anchoredPosition.y + 500; // Passe den Wert an je nach Bedarf
 
         // Bewegung nach oben und Opacity reduzieren
         LeanTween.moveY(imageTransform, targetY, 2f).setEase(LeanTweenType.easeInOutQuad);
@@ -122,16 +122,18 @@ public class Korb : MonoBehaviour
     public void Jump()
     {
         Vector3 jumpVelocity = new Vector3(0, 2f, 0);
-        rb.velocity = rb.velocity + jumpVelocity;
-        rb2.velocity = rb.velocity + jumpVelocity;
-        rb3.velocity = rb.velocity + jumpVelocity;
-        rb4.velocity = rb.velocity + jumpVelocity;
+        rb.linearVelocity = rb.linearVelocity + jumpVelocity;
+        rb2.linearVelocity = rb.linearVelocity + jumpVelocity;
+        rb3.linearVelocity = rb.linearVelocity + jumpVelocity;
+        rb4.linearVelocity = rb.linearVelocity + jumpVelocity;
     }
 
     IEnumerator bubbleAktivieren()
     {
         einmal = true;
-        aktuelleSprechblase = Random.Range(0, bubbles.Length +1);
+        aktuelleSprechblase = Random.Range(0, bubbles.Length -1);
+        Debug.Log(bubbles.Length);
+        Debug.Log(aktuelleSprechblase);
         bubbles[aktuelleSprechblase].SetActive(true);
         yield return new WaitForSecondsRealtime(2f);
         bubbles[aktuelleSprechblase].SetActive(false);

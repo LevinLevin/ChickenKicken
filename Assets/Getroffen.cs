@@ -16,8 +16,6 @@ public class Getroffen : MonoBehaviour, IPooledObject
     bool getroffen = false;
     bool einmal = true;
 
-    bool isMusicOn;
-
     ScoreManager sm;
 
     public void OnObjectSpawn()
@@ -28,7 +26,7 @@ public class Getroffen : MonoBehaviour, IPooledObject
 
     private void Start()
     {
-        sm = FindObjectOfType<ScoreManager>();
+        sm = ScoreManager.Instance;
 
         if (PlayerPrefs.GetInt("MusikAus", 1) == 0)
         {

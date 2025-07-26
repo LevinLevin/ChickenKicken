@@ -17,8 +17,8 @@ public class StuffManager : MonoBehaviour
 
     void Start()
     {
-        gm = FindObjectOfType<GoldManager>();
-        sm = FindObjectOfType<ScoreManager>();
+        gm = GoldManager.instance;
+        sm = ScoreManager.Instance;
 
 
         foreach (HutBlueprint hut in platz)

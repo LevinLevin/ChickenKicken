@@ -22,7 +22,7 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
-        sm= FindObjectOfType<ScoreManager>();
+        sm= ScoreManager.Instance;
 
         foreach(LocationBlueprint loc in platz)
         {

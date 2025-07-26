@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NehmenButton : MonoBehaviour
 {
@@ -14,7 +12,7 @@ public class NehmenButton : MonoBehaviour
 
     private void Start()
     {
-        gm = FindObjectOfType<GoldManager>();
+        gm = GoldManager.instance;
     }
 
     public void CloseCanvas()

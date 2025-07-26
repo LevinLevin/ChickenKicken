@@ -32,7 +32,7 @@ public class Sheep : MonoBehaviour
         if (isGrounded())
         {
             Vector3 jumpVelocity = new Vector3(0, 4f, 0);
-            rb.velocity = rb.velocity + jumpVelocity;
+            rb.linearVelocity = rb.linearVelocity + jumpVelocity;
         }
     }
 

@@ -31,7 +31,7 @@ public class Springen : MonoBehaviour
         while(true)
         {
             Vector3 jumpVelocity = new Vector3(0, 2f, 0);
-            rb.velocity = rb.velocity + jumpVelocity;
+            rb.linearVelocity = rb.linearVelocity + jumpVelocity;
             yield return new WaitForSeconds(2f);
         }
     }

@@ -18,6 +18,6 @@ public class BildschirmWurf : MonoBehaviour, IPooledObject
 
     void Update()
     {
-        rb.velocity = flugrichtung * speed;
+        rb.linearVelocity = flugrichtung * speed;
     }
 }

@@ -10,7 +10,7 @@ public class ShooterShoot : MonoBehaviour
 
     [SerializeField] private Transform gun;
 
-    ObjectPooler objectPooler;//für die bullets
+    ObjectPooler objectPooler;//fï¿½r die bullets
 
     public GameObject bulletPrefab;
     public float bulletSpeed = 20;
@@ -56,7 +56,7 @@ public class ShooterShoot : MonoBehaviour
         GameObject bullet = objectPooler.SpawnFromPool("Bullet", gun.position, Quaternion.identity);
 
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-        bulletRigidbody.velocity = bulletDirectionRight * bulletSpeed;
+        bulletRigidbody.linearVelocity = bulletDirectionRight * bulletSpeed;
         munition--;
         UpdateAmmoUI();
     }
@@ -67,7 +67,7 @@ public class ShooterShoot : MonoBehaviour
         GameObject bullet = objectPooler.SpawnFromPool("Bullet", gun.position, Quaternion.identity);
 
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-        bulletRigidbody.velocity = bulletDirectionLeft * bulletSpeed;
+        bulletRigidbody.linearVelocity = bulletDirectionLeft * bulletSpeed;
         munition--;
         UpdateAmmoUI();
     }

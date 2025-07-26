@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class wurf : MonoBehaviour
@@ -29,7 +28,7 @@ public class wurf : MonoBehaviour
     
     void Start()
     {
-        sm = FindObjectOfType<ScoreManager>();
+        sm = ScoreManager.Instance;
 
         objectPooler = ObjectPooler.Instance;
 

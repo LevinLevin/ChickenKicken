@@ -14,6 +14,12 @@ public class SchadenNehmen : MonoBehaviour
     //leben
     private int leben;
 
+    private void Awake()
+    {
+        if(instance == null)
+            instance = this;
+    }
+
     private void Start()
     {
         ImgBlood.gameObject.SetActive(false);

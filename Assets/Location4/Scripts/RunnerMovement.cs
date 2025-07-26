@@ -6,7 +6,7 @@ public class RunnerMovement : MonoBehaviour
 {
     public LayerMask groundLayer;
 
-    private int desiredLane = 1; //ein integer für jede linie 0 für links, 1 für mitte, usw
+    private int desiredLane = 1; //ein integer fï¿½r jede linie 0 fï¿½r links, 1 fï¿½r mitte, usw
     public float laneDistance = 4; //die distanz zwischen den linien
 
     [SerializeField] public Rigidbody rb;
@@ -15,9 +15,9 @@ public class RunnerMovement : MonoBehaviour
 
     //das huhn soll sich nicht bewegen, bis es den ersten bus erreicht hat
     public bool isGestartet;
-    [SerializeField] GameObject links, rechts; //das sind die buttons für das movement
+    [SerializeField] GameObject links, rechts; //das sind die buttons fï¿½r das movement
 
-    //für die Animationen
+    //fï¿½r die Animationen
     [SerializeField] private Animator animator;
 
     private void Start()
@@ -88,7 +88,7 @@ public class RunnerMovement : MonoBehaviour
         if (isGrounded())
         {
             Vector3 jumpVelocity = new Vector3(0, 6f, 0);
-            rb.velocity = rb.velocity + jumpVelocity;
+            rb.linearVelocity = rb.linearVelocity + jumpVelocity;
         }
     }
     public bool isGrounded()

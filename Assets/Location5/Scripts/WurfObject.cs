@@ -28,7 +28,7 @@ public class WurfObject : MonoBehaviour, IPooledObject
 
         moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
 
-        rb.velocity = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
+        rb.linearVelocity = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
 
         tag = "Player";
 

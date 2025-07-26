@@ -47,7 +47,7 @@ public class Fliegen : MonoBehaviour, IPooledObject
 
     void Update()
     {
-        rb.velocity = new Vector3(speed, 0, 0);
+        rb.linearVelocity = new Vector3(speed, 0, 0);
 
         if (rb != null && rb.freezeRotation == true)
         {

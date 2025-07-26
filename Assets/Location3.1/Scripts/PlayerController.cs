@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     //jump
     public float distToGround = 0.5f;
 
-    //für die Animationen
+    //fï¿½r die Animationen
     private Animator animator;
 
     void Start()
@@ -41,12 +41,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(joystick.Horizontal * moveSpeed, rb.velocity.y, joystick.Vertical * moveSpeed);
+        rb.linearVelocity = new Vector3(joystick.Horizontal * moveSpeed, rb.linearVelocity.y, joystick.Vertical * moveSpeed);
 
         if (joystick.Horizontal != 0 || joystick.Vertical !=0)
         {
             animator.SetBool("isJumping", false);
-            transform.rotation = Quaternion.LookRotation(rb.velocity);
+            transform.rotation = Quaternion.LookRotation(rb.linearVelocity);
         }
         else
         {

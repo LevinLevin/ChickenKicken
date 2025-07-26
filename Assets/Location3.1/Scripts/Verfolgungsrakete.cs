@@ -24,9 +24,9 @@ public class Verfolgungsrakete : MonoBehaviour, IPooledObject
     SchadenNehmen sn;
     bool getroffen;
 
-    public void OnObjectSpawn() //On object spawn ist die start funktion für objekte aus dem objekt pool
+    public void OnObjectSpawn() //On object spawn ist die start funktion fï¿½r objekte aus dem objekt pool
     {
-        sn = FindObjectOfType<SchadenNehmen>();
+        sn = SchadenNehmen.instance;
 
         rb = GetComponent<Rigidbody>();
 
@@ -37,10 +37,9 @@ public class Verfolgungsrakete : MonoBehaviour, IPooledObject
         if(target !=null )
         {
             moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
-            Debug.Log("Target gefunden");
         }
 
-        rb.velocity = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
+        rb.linearVelocity = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
 
         PSRauch.Play();
     }

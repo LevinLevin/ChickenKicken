@@ -43,7 +43,7 @@ public class wurf2 : MonoBehaviour, IPooledObject
 
         if (amLeben && amFliegen == true)
         {
-            rb.velocity = new Vector3(direction, 3.5f);
+            rb.linearVelocity = new Vector3(direction, 3.5f);
         }
     }
 

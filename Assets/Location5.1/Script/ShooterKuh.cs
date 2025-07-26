@@ -21,7 +21,7 @@ public class ShooterKuh : MonoBehaviour
     public float bulletSpeed;
     private float wurfSpeed;
 
-    //ein int für das random event
+    //ein int fï¿½r das random event
     int gunPicker;
 
     [Header("Alle Schafe")]
@@ -129,7 +129,7 @@ public class ShooterKuh : MonoBehaviour
         MusicPlayer.volume -= 0.05f;
         MusicPlayer.Play();
 
-        //das level wird nach jeder runde erhöht um einen score zu berechnen
+        //das level wird nach jeder runde erhï¿½ht um einen score zu berechnen
         level += iLevel;
         PlayerPrefs.SetInt("Level", level);
         if(level >= PlayerPrefs.GetInt("Level", 0))
@@ -260,7 +260,7 @@ public class ShooterKuh : MonoBehaviour
                 //Destroy(bullet, 4f);
                 //bullet.GetComponent<Rigidbody>().AddForce(-transform.forward * bulletSpeed, ForceMode.Impulse);
                 Rigidbody bulletRB = bullet.GetComponent<Rigidbody>();
-                bulletRB.velocity = Vector3.zero;
+                bulletRB.linearVelocity = Vector3.zero;
                 bulletRB.AddForce(-gun1.forward * bulletSpeed, ForceMode.Impulse);
                 break;
 
@@ -271,7 +271,7 @@ public class ShooterKuh : MonoBehaviour
                 //Destroy(burrel, 4f);
                 //burrel.GetComponent<Rigidbody>().AddForce(-transform.forward * bulletSpeed, ForceMode.Impulse);
                 Rigidbody burrelRB = burrel.GetComponent<Rigidbody>();
-                burrelRB.velocity = Vector3.zero;
+                burrelRB.linearVelocity = Vector3.zero;
                 burrelRB.AddForce(-gun2.forward * bulletSpeed, ForceMode.Impulse);
                 break;
 
@@ -282,7 +282,7 @@ public class ShooterKuh : MonoBehaviour
                 //Destroy(kullel, 4f);
                 //kullel.GetComponent<Rigidbody>().AddForce(-transform.forward * bulletSpeed, ForceMode.Impulse);
                 Rigidbody kullelRB = kullel.GetComponent<Rigidbody>();
-                kullelRB.velocity = Vector3.zero;
+                kullelRB.linearVelocity = Vector3.zero;
                 kullelRB.AddForce(-gun1.forward * bulletSpeed, ForceMode.Impulse);
                 break;
 
